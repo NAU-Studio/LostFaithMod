@@ -9,18 +9,19 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class LFItems {
 
-    public final DeferredItem<SwordItem> CRUCIFIX;
-    public final DeferredItem<ItemSilverCrucifix> SILVER_CRUCIFIX;
-    public final DeferredItem<ItemBibleOldTesta> BIBLE_OLD_TESTA;
-    public final DeferredItem<ItemBibleNewTesta> BIBLE_NEW_TESTA;
+    public static DeferredRegister.Items Registry = DeferredRegister.createItems(LostFaithMod.MODID);
 
-    public LFItems() {
-        DeferredRegister.Items reg = LostFaithMod.ITEMS;
-        CRUCIFIX = reg.register("crucifix", () -> new SwordItem(LFTiers.CRUCIFIX, new Item.Properties()
-                .attributes(SwordItem.createAttributes(LFTiers.CRUCIFIX, 4, -2.4F))));
-        SILVER_CRUCIFIX = reg.register("silver_crucifix", () -> new ItemSilverCrucifix(new Item.Properties()
-                .durability(1200)));
-        BIBLE_OLD_TESTA = reg.register("bible_old_testa", () -> new ItemBibleOldTesta(new Item.Properties()));
-        BIBLE_NEW_TESTA = reg.register("bible_new_testa", () -> new ItemBibleNewTesta(new Item.Properties()));
-    }
+    public static final DeferredItem<SwordItem> Crucifix
+            = Registry.register("crucifix", () -> new SwordItem(LFTiers.CRUCIFIX, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(LFTiers.CRUCIFIX, 4, -2.4F))));
+
+    public static final DeferredItem<ItemSilverCrucifix> SilverCrucifix
+            = Registry.register("silver_crucifix", () -> new ItemSilverCrucifix(new Item.Properties()
+                    .durability(1200)));
+
+    public static final DeferredItem<ItemBibleOldTesta> BibleOldTesta
+            = Registry.register("bible_old_testa", () -> new ItemBibleOldTesta(new Item.Properties()));
+
+    public static final DeferredItem<ItemBibleNewTesta> BibleNewTesta
+            = Registry.register("bible_new_testa", () -> new ItemBibleNewTesta(new Item.Properties()));
 }

@@ -48,8 +48,9 @@ description='''曾经洁白的信仰却与污秽的怪物同流合污，往日�
 The once faith is in tandem with the monsters. The sinners of the past have ascended to the hall of elegance. When the gods betray, only humans can save themselves...
 
 本模组包含大量世界历史文化，有英雄与优秀文化；同时也有恶人与糟粕。你要做的就是在圣人与先人的指导下，杀死这些与玩家对立的怪物。
-你不是一个人在战斗，游戏过程中你会得到很多人的帮助。他们可能是心存善念的神明，可能是人类历史上的伟人。拿起你的武器，战斗……
 This mod contains a lot of world history and culture, with heroes and excellent culture or wicked people and dross. All you have to do is kill these monsters under the guidance of the saints and ancestors.
+
+你不是一个人在战斗，游戏过程中你会得到很多人的帮助。他们可能是心存善念的神明，可能是人类历史上的伟人。拿起你的武器，战斗……
 You're not fighting alone. You'll get a lot of help during the game. They may be gods with good intentions or great men in human history. Pick up your weapons and fight...'''
 
 # The [[mixins]] block allows you to declare your mixin config to FML so that it gets loaded.

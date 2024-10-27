@@ -1,8 +1,6 @@
 package io.naustudio.lostfaith.item.mission;
 
-import io.naustudio.lostfaith.LostFaithMod;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.component.DataComponentMap;
+import io.naustudio.lostfaith.component.LFComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -24,7 +22,7 @@ public class ItemBibleNewTesta extends Item {
     public void appendHoverText(ItemStack item, TooltipContext context, List<Component> content, TooltipFlag flags) {
         super.appendHoverText(item, context, content, flags);
 
-        MetaData data = new MetaData(item.get(LostFaithMod.LFComponents.BibleMetadata));
+        MetaData data = new MetaData(item.get(LFComponents.BibleMetadata));
 
         if (data.Finished)
             content.add(Component.translatable("item.lostfaith.bible_new_testa.description.line1_done"));
@@ -40,8 +38,8 @@ public class ItemBibleNewTesta extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
         ItemStack item = player.getItemInHand(usedHand);
-        if (item.get(LostFaithMod.LFComponents.BibleMetadata.get()) == null)
-            item.set(LostFaithMod.LFComponents.BibleMetadata.get(), new MetaRecord(player.getName(), false));
+        if (item.get(LFComponents.BibleMetadata.get()) == null)
+            item.set(LFComponents.BibleMetadata.get(), new MetaRecord(player.getName(), false));
         return InteractionResultHolder.success(item);
     }
 }

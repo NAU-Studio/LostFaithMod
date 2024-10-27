@@ -1,6 +1,5 @@
 package io.naustudio.lostfaith;
 
-import com.mojang.logging.LogUtils;
 import io.naustudio.lostfaith.component.LFComponents;
 import io.naustudio.lostfaith.entity.LFEntities;
 import io.naustudio.lostfaith.entity.judas.EntityJudas;
@@ -11,7 +10,6 @@ import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.*;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -26,37 +24,24 @@ import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-
-import java.util.HashMap;
-import java.util.UUID;
 
 @Mod(LostFaithMod.MODID)
 public class LostFaithMod {
 
     public static final String MODID = "lostfaith";
-    private static final Logger LOGGER = LogUtils.getLogger();
-    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
-    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
-    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(Registries.ENTITY_TYPE, MODID);
-    public static final DeferredRegister.DataComponents DATA_COMPONENTS = DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, MODID);
-    public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
-    public static final LFItems LFItems = new LFItems();
-    public static final LFComponents LFComponents = new LFComponents();
-    public static final LFEntities LFEntities = new LFEntities();
+    public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MAIN_TAB = TABS.register("lostfaith_main", () ->
             CreativeModeTab.builder()
-                    .icon(() -> new ItemStack(LFItems.CRUCIFIX.get()))
+                    .icon(() -> new ItemStack(LFItems.Crucifix.get()))
                     .title(Component.translatable("item_group.lostfaith_main")).build());
 
     public LostFaithMod(IEventBus modEventBus, ModContainer container) {
-        BLOCKS.register(modEventBus);
-        ITEMS.register(modEventBus);
-        ENTITY_TYPES.register(modEventBus);
+        LFItems.Registry.register(modEventBus);
+        LFEntities.Registry.register(modEventBus);
         TABS.register(modEventBus);
-        DATA_COMPONENTS.register(modEventBus);
+        LFComponents.Registry.register(modEventBus);
 
         modEventBus.register(this);
     }
@@ -64,10 +49,10 @@ public class LostFaithMod {
     @SubscribeEvent
     public void addCreative(@NotNull BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == MAIN_TAB.getKey()) {
-            event.accept(LFItems.CRUCIFIX);
-            event.accept(LFItems.SILVER_CRUCIFIX);
-            event.accept(LFItems.BIBLE_OLD_TESTA);
-            event.accept(LFItems.BIBLE_NEW_TESTA);
+            event.accept(LFItems.Crucifix);
+            event.accept(LFItems.SilverCrucifix);
+            event.accept(LFItems.BibleOldTesta);
+            event.accept(LFItems.BibleNewTesta);
         }
     }
 
@@ -80,7 +65,7 @@ public class LostFaithMod {
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             event.enqueueWork(
-                    () -> ItemProperties.register(LFItems.BIBLE_OLD_TESTA.get(), res,
+                    () -> ItemProperties.register(LFItems.BibleOldTesta.get(), res,
                             (i, l, e, s) -> e != null && e.isUsingItem() && e.getUseItem() == i ? 1 : 0));
         }
 

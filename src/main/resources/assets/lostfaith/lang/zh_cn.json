@@ -1,0 +1,16 @@
+{
+  "item_group.lostfaith_main": "失落信仰",
+  "item.lostfaith.crucifix": "十字架",
+  "item.lostfaith.silver_crucifix": "银十字架",
+  "item.lostfaith.silver_crucifix.description.line1": "§e右键§r发射圣火。§r",
+  "item.lostfaith.silver_crucifix.description.line2": "§7§o烧死他们！诶？不是！不要对着自己和朋友使用啊！§r",
+  "item.lostfaith.bible_old_testa": "§e圣经 · 旧约§r",
+  "item.lostfaith.bible_old_testa.description.line1": "§r与盾牌一致。",
+  "item.lostfaith.bible_old_testa.description.line2": "§7§o旧世界的法则，受神庇佑，驱魔利器。可以§r§e抵挡几乎所有伤害§7§o，且§r§e不会损坏§7§o。§r",
+  "item.lostfaith.bible_new_testa": "§e圣经 · 新约§r",
+  "item.lostfaith.bible_new_testa.description.line1_tobecontinued": "世界新的“秩序”，将由你来谱写...",
+  "item.lostfaith.bible_new_testa.description.line1_done": "后人将会铭记，人类最为伟大...",
+  "item.lostfaith.bible_new_testa.description.line2": "§7§o这是一本指引你的任务书，也是一本记录一切发生的传记。§r",
+  "item.lostfaith.bible_new_testa.description.line3": "§7§o%s 著。§r",
+  "item.lostfaith.bible_new_testa.description.line3_unsigned": "§7§o未署名。§r"
+}

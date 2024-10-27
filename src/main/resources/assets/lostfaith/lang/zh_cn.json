@@ -12,5 +12,6 @@
   "item.lostfaith.bible_new_testa.description.line1_done": "后人将会铭记，人类最为伟大...",
   "item.lostfaith.bible_new_testa.description.line2": "§7§o这是一本指引你的任务书，也是一本记录一切发生的传记。§r",
   "item.lostfaith.bible_new_testa.description.line3": "§7§o%s 著。§r",
-  "item.lostfaith.bible_new_testa.description.line3_unsigned": "§7§o未署名。§r"
+  "item.lostfaith.bible_new_testa.description.line3_unsigned": "§7§o未署名。§r",
+  "entity.lostfaith.judas": "§b犹大§r"
 }

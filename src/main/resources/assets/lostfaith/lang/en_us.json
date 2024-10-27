@@ -12,5 +12,7 @@
   "item.lostfaith.bible_new_testa.description.line1_done": "Future generations will remember, human is the greatest...",
   "item.lostfaith.bible_new_testa.description.line2": "§7§oIt's a mission book that guides you, also a biography that record everything happened.",
   "item.lostfaith.bible_new_testa.description.line3": "§7§oBy %s.§r",
-  "item.lostfaith.bible_new_testa.description.line3_unsigned": "§7§oUnsigned.§r"
+  "item.lostfaith.bible_new_testa.description.line3_unsigned": "§7§oUnsigned.§r",
+
+  "entity.lostfaith.judas": "§bJudas§r"
 }

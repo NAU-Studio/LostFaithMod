@@ -1,5 +1,7 @@
 package io.naustudio.lostfaith;
 
+import com.mojang.logging.LogUtils;
+import io.naustudio.lostfaith.block.LFBlocks;
 import io.naustudio.lostfaith.component.LFComponents;
 import io.naustudio.lostfaith.entity.LFEntities;
 import io.naustudio.lostfaith.entity.judas.EntityJudas;
@@ -22,13 +24,20 @@ import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 
 @Mod(LostFaithMod.MODID)
 public class LostFaithMod {
 
     public static final String MODID = "lostfaith";
+
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
@@ -42,6 +51,7 @@ public class LostFaithMod {
         LFEntities.Registry.register(modEventBus);
         TABS.register(modEventBus);
         LFComponents.Registry.register(modEventBus);
+        LFBlocks.Registry.register(modEventBus);
 
         modEventBus.register(this);
     }
@@ -49,10 +59,17 @@ public class LostFaithMod {
     @SubscribeEvent
     public void addCreative(@NotNull BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == MAIN_TAB.getKey()) {
-            event.accept(LFItems.Crucifix);
-            event.accept(LFItems.SilverCrucifix);
-            event.accept(LFItems.BibleOldTesta);
-            event.accept(LFItems.BibleNewTesta);
+            Field[] fields = LFItems.class.getFields();
+            for (Field field : fields) {
+                if (field.getType() == DeferredItem.class && Modifier.isPublic(field.getModifiers())) {
+                    try {
+                        event.accept((DeferredItem<? extends Item>)field.get(null));
+                        LOGGER.debug("Registered {}", field.getName());
+                    } catch (IllegalAccessException ex) {
+                        LOGGER.error(ex.getMessage());
+                    }
+                }
+            }
         }
     }
 

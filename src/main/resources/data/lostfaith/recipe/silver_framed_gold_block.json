@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "@": [
+      {
+        "item": "lostfaith:roma_silver_coin"
+      }
+    ],
+    "#": [
+      {
+        "item": "minecraft:gold_block"
+      }
+    ]
+  },
+  "pattern": [
+    "@@@",
+    "@#@",
+    "@@@"
+  ],
+  "result": {
+    "id": "lostfaith:silver_framed_gold_block"
+  }
+}

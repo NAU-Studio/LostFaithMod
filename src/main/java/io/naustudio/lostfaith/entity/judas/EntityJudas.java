@@ -26,8 +26,8 @@ public class EntityJudas extends Monster {
     final ServerBossEvent BossInfo
             = (ServerBossEvent) new ServerBossEvent(getDisplayName(), BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.PROGRESS).setDarkenScreen(true);
 
-    public EntityJudas(EntityType<? extends Monster> entityType, Level level) {
-        super(entityType, level);
+    public EntityJudas(EntityType<EntityJudas> type, Level level) {
+        super(type, level);
     }
 
     @Override

@@ -7,12 +7,24 @@ import io.naustudio.lostfaith.entity.LFEntities;
 import io.naustudio.lostfaith.entity.judas.EntityJudas;
 import io.naustudio.lostfaith.entity.judas.ModelJudas;
 import io.naustudio.lostfaith.entity.judas.RendererJudas;
+import io.naustudio.lostfaith.entity.turtle_guard.lost.EntityLostTurtleGuard;
+import io.naustudio.lostfaith.entity.turtle_guard.lost.ModelLostTurtleGuard;
+import io.naustudio.lostfaith.entity.turtle_guard.lost.RendererLostTurtleGuard;
 import io.naustudio.lostfaith.item.LFItems;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.SpawnPlacementTypes;
+import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.ambient.Bat;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -23,6 +35,7 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
+import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -73,14 +86,22 @@ public class LostFaithMod {
         }
     }
 
+    @SubscribeEvent
+    public void onRegisterSpawnPlacements(RegisterSpawnPlacementsEvent event) {
+        event.register(LFEntities.LostTurtleGuard.get(),
+                SpawnPlacementTypes.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                Monster::checkAnyLightMonsterSpawnRules,
+                RegisterSpawnPlacementsEvent.Operation.REPLACE);
+    }
+
     static ResourceLocation res = ResourceLocation.fromNamespaceAndPath(MODID, "blocking");
 
     @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents
     {
         @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event)
-        {
+        public static void onClientSetup(FMLClientSetupEvent event)  {
             event.enqueueWork(
                     () -> ItemProperties.register(LFItems.BibleOldTesta.get(), res,
                             (i, l, e, s) -> e != null && e.isUsingItem() && e.getUseItem() == i ? 1 : 0));
@@ -89,16 +110,19 @@ public class LostFaithMod {
         @SubscribeEvent
         public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
             event.registerLayerDefinition(ModelJudas.LayerLocation, ModelJudas::createBodyLayer);
+            event.registerLayerDefinition(ModelLostTurtleGuard.LayerLocation, ModelLostTurtleGuard::createBodyLayer);
         }
 
         @SubscribeEvent
         public static void onRegisterRenderer(EntityRenderersEvent.RegisterRenderers event) {
             event.registerEntityRenderer(LFEntities.Judas.get(), RendererJudas::new);
+            event.registerEntityRenderer(LFEntities.LostTurtleGuard.get(), RendererLostTurtleGuard::new);
         }
 
         @SubscribeEvent
         public static void onAttributeCreate(EntityAttributeCreationEvent event) {
             event.put(LFEntities.Judas.get(), EntityJudas.CreateAttributes().build());
+            event.put(LFEntities.LostTurtleGuard.get(), EntityLostTurtleGuard.CreateAttributes().build());
         }
     }
 }

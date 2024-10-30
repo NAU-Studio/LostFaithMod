@@ -14,9 +14,9 @@
     ]
   },
   "pattern": [
-    "@@@",
+    " @@",
     "@#@",
-    "@@@"
+    "@@ "
   ],
   "result": {
     "id": "lostfaith:silver_framed_gold_block"

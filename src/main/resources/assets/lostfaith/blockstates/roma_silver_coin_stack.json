@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "count=1": {
+      "model": "lostfaith:block/roma_silver_coin_stack_1"
+    },
+    "count=2": {
+      "model": "lostfaith:block/roma_silver_coin_stack_2"
+    },
+    "count=3": {
+      "model": "lostfaith:block/roma_silver_coin_stack_3"
+    },
+    "count=4": {
+      "model": "lostfaith:block/roma_silver_coin_stack_4"
+    }
+  }
+}

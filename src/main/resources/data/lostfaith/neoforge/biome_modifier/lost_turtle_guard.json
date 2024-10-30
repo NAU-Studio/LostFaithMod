@@ -7,7 +7,7 @@
   "spawners": [
     {
       "type": "lostfaith:lost_turtle_guard",
-      "weight": 1000,
+      "weight": 750,
       "minCount": 1,
       "maxCount": 5
     }

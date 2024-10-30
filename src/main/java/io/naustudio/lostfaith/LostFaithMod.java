@@ -15,15 +15,9 @@ import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.SpawnPlacementTypes;
-import net.minecraft.world.entity.SpawnPlacements;
-import net.minecraft.world.entity.ambient.Bat;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -60,11 +54,11 @@ public class LostFaithMod {
                     .title(Component.translatable("item_group.lostfaith_main")).build());
 
     public LostFaithMod(IEventBus modEventBus, ModContainer container) {
+        LFBlocks.Registry.register(modEventBus);
         LFItems.Registry.register(modEventBus);
         LFEntities.Registry.register(modEventBus);
         TABS.register(modEventBus);
         LFComponents.Registry.register(modEventBus);
-        LFBlocks.Registry.register(modEventBus);
 
         modEventBus.register(this);
     }

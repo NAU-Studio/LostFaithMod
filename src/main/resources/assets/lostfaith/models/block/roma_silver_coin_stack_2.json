@@ -1,0 +1,34 @@
+{
+	"textures": {
+		"0": "lostfaith:block/roma_silver_coin_stack",
+		"particle": "lostfaith:item/roma_silver_coin"
+	},
+	"elements": [
+		{
+			"from": [7, 0, 3],
+			"to": [11, 1, 7],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 3]},
+			"faces": {
+				"north": {"uv": [0, 4, 4, 5], "texture": "#0"},
+				"east": {"uv": [0, 4, 4, 5], "texture": "#0"},
+				"south": {"uv": [0, 4, 4, 5], "texture": "#0"},
+				"west": {"uv": [0, 4, 4, 5], "texture": "#0"},
+				"up": {"uv": [0, 0, 4, 4], "texture": "#0"},
+				"down": {"uv": [0, 0, 4, 4], "texture": "#0"}
+			}
+		},
+		{
+			"from": [5, 0, 8],
+			"to": [9, 1, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [6, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 4, 4, 5], "texture": "#0"},
+				"east": {"uv": [0, 4, 4, 5], "texture": "#0"},
+				"south": {"uv": [0, 4, 4, 5], "texture": "#0"},
+				"west": {"uv": [0, 4, 4, 5], "texture": "#0"},
+				"up": {"uv": [0, 0, 4, 4], "texture": "#0"},
+				"down": {"uv": [0, 0, 4, 4], "texture": "#0"}
+			}
+		}
+	]
+}

@@ -28,7 +28,7 @@ public class LFItems {
             = Registry.register("bible_new_testa", () -> new ItemBibleNewTesta(new Item.Properties()));
 
     public static final DeferredItem<Item> RomaSilverCoin
-            = Registry.register("roma_silver_coin", () -> new Item(new Item.Properties()));
+            = Registry.register("roma_silver_coin", () -> new BlockItem(LFBlocks.SilverCoinStack.get(), new Item.Properties()));
 
     public static final DeferredItem<BlockItem> SilverFramedGoldBlock
             = Registry.register("silver_framed_gold_block", () -> new BlockItem(LFBlocks.SilverFramedGoldBlock.get(), new Item.Properties()));

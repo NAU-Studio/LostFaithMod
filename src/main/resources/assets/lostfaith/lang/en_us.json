@@ -13,9 +13,12 @@
   "item.lostfaith.bible_new_testa.description.line2": "§7§oIt's a mission book that guides you, also a biography that record everything happened.",
   "item.lostfaith.bible_new_testa.description.line3": "§7§oBy %s.§r",
   "item.lostfaith.bible_new_testa.description.line3_unsigned": "§7§oUnsigned.§r",
-  "item.lostfaith.roma_silver_coin": "Roman Silver Coin",
 
+  "block.lostfaith.roma_silver_coin_stack": "Roman Silver Coin",
   "block.lostfaith.silver_framed_gold_block": "Silver Framed Gold Block",
 
-  "entity.lostfaith.judas": "§bJudas§r"
+  "entity.lostfaith.judas": "§bJudas§r",
+  "entity.lostfaith.lost_turtle_guard": "Lost Turtle Guard",
+
+  "message.lostfaith.silver_framed_gold_block.interaction_failed": "Structure incorrect!"
 }

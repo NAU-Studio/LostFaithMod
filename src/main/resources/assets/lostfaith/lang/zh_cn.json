@@ -13,9 +13,12 @@
   "item.lostfaith.bible_new_testa.description.line2": "§7§o这是一本指引你的任务书，也是一本记录一切发生的传记。§r",
   "item.lostfaith.bible_new_testa.description.line3": "§7§o%s 著。§r",
   "item.lostfaith.bible_new_testa.description.line3_unsigned": "§7§o未署名。§r",
-  "item.lostfaith.roma_silver_coin": "罗马银币",
 
+  "block.lostfaith.roma_silver_coin_stack": "罗马银币",
   "block.lostfaith.silver_framed_gold_block": "镶银金块",
 
-  "entity.lostfaith.judas": "§b犹大§r"
+  "entity.lostfaith.judas": "§b犹大§r",
+  "entity.lostfaith.lost_turtle_guard": "走丢的老鳖卫士",
+
+  "message.lostfaith.silver_framed_gold_block.interaction_failed": "结构不正确！"
 }

@@ -49,7 +49,7 @@ public class ModelJudas extends EntityModel<EntityJudas> {
         PartDefinition body = partdefinition.addOrReplaceChild("body",
                 CubeListBuilder.create()
                         .texOffs(32, 91)
-                        .addBox(-4, -13, -2, 8, 13, 4, new CubeDeformation(0.0F)),
+                        .addBox(-3, -13, -2, 8, 13, 4, new CubeDeformation(0.0F)),
                 PartPose.offset(0, 12, 0));
 
         PartDefinition right_leg = partdefinition.addOrReplaceChild("right_leg",

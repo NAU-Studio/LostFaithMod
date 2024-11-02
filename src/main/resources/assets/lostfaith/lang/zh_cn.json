@@ -8,10 +8,11 @@
   "item.lostfaith.bible_old_testa.description.line1": "§r与盾牌一致。",
   "item.lostfaith.bible_old_testa.description.line2": "§7§o旧世界的法则，受神庇佑，驱魔利器。可以§r§e抵挡几乎所有伤害§7§o，且§r§e不会损坏§7§o。§r",
   "item.lostfaith.bible_new_testa": "§e圣经 · 新约§r",
+  "item.lostfaith.bible_new_testa.raw": "圣经 · 新约",
   "item.lostfaith.bible_new_testa.description.line1_tobecontinued": "世界新的“秩序”，将由你来谱写...",
   "item.lostfaith.bible_new_testa.description.line1_done": "后人将会铭记，人类最为伟大...",
   "item.lostfaith.bible_new_testa.description.line2": "§7§o这是一本指引你的任务书，也是一本记录一切发生的传记。§r",
-  "item.lostfaith.bible_new_testa.description.line3": "§7§o%s 著。§r",
+  "item.lostfaith.bible_new_testa.description.line3": "§7§o%s 著§r",
   "item.lostfaith.bible_new_testa.description.line3_unsigned": "§7§o未署名。§r",
 
   "block.lostfaith.roma_silver_coin_stack": "罗马银币",

@@ -8,10 +8,11 @@
   "item.lostfaith.bible_old_testa.description.line1": "§rSame with the shield.",
   "item.lostfaith.bible_old_testa.description.line2": "§7§oThe laws of the old world, blessed by the gods, is an exorcist weapon. It can §r§eresists almost all damage§7§o and is §r§eunbreakable§7§o.§r",
   "item.lostfaith.bible_new_testa": "§eThe New Testament · Bible§r",
+  "item.lostfaith.bible_new_testa.raw": "The New Testament · Bible",
   "item.lostfaith.bible_new_testa.description.line1_tobecontinued": "The laws of the new world, waiting for your writing...",
   "item.lostfaith.bible_new_testa.description.line1_done": "Future generations will remember, human is the greatest...",
   "item.lostfaith.bible_new_testa.description.line2": "§7§oIt's a mission book that guides you, also a biography that record everything happened.",
-  "item.lostfaith.bible_new_testa.description.line3": "§7§oBy %s.§r",
+  "item.lostfaith.bible_new_testa.description.line3": "§7§oBy %s§r",
   "item.lostfaith.bible_new_testa.description.line3_unsigned": "§7§oUnsigned.§r",
 
   "block.lostfaith.roma_silver_coin_stack": "Roman Silver Coin",

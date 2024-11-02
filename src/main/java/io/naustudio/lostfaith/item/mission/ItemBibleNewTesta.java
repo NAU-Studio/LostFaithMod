@@ -1,6 +1,8 @@
 package io.naustudio.lostfaith.item.mission;
 
 import io.naustudio.lostfaith.component.LFComponents;
+import io.naustudio.lostfaith.gui.book.BibleNewTestaScreen;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -31,7 +33,7 @@ public class ItemBibleNewTesta extends Item {
         content.add(Component.translatable("item.lostfaith.bible_new_testa.description.line2"));
         Component line3 = data.Owner == null
                 ? Component.translatable("item.lostfaith.bible_new_testa.description.line3_unsigned")
-                : Component.translatable("item.lostfaith.bible_new_testa.description.line3", data.Owner);
+                : GetAuthorText(item);
                 content.add(line3);
     }
 
@@ -40,6 +42,15 @@ public class ItemBibleNewTesta extends Item {
         ItemStack item = player.getItemInHand(usedHand);
         if (item.get(LFComponents.BibleMetadata.get()) == null)
             item.set(LFComponents.BibleMetadata.get(), new MetaRecord(player.getName(), false));
+
+        if (BibleNewTestaScreen.Current == null)
+            Minecraft.getInstance().setScreen(new BibleNewTestaScreen(item));
+
         return InteractionResultHolder.success(item);
+    }
+
+    public Component GetAuthorText(ItemStack item) {
+        return Component.translatable("item.lostfaith.bible_new_testa.description.line3",
+                item.get(LFComponents.BibleMetadata).owner());
     }
 }

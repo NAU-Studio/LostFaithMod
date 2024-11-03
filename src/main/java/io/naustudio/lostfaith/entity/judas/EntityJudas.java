@@ -1,6 +1,7 @@
 package io.naustudio.lostfaith.entity.judas;
 
 import io.naustudio.lostfaith.entity.DivineFlameball;
+import io.naustudio.lostfaith.util.MathUtils;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.BossEvent;
@@ -18,6 +19,8 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.EventHooks;
 
@@ -49,7 +52,7 @@ public class EntityJudas extends Monster {
         return Monster.createMonsterAttributes()
                 .add(Attributes.ATTACK_DAMAGE, 10)
                 .add(Attributes.MOVEMENT_SPEED, 0.3)
-                .add(Attributes.FOLLOW_RANGE, 64)
+                .add(Attributes.FOLLOW_RANGE, 40)
                 .add(Attributes.MAX_HEALTH, 400)
                 .add(Attributes.ARMOR, 15)
                 .add(Attributes.KNOCKBACK_RESISTANCE);
@@ -112,27 +115,26 @@ public class EntityJudas extends Monster {
 
         public void tick() {
             LivingEntity target = Entity.getTarget();
-            if (target != null) {
-                if (target.distanceToSqr(Entity) > 6 && Entity.hasLineOfSight(target)) {
-                    Delay++;
-                    if (Delay >= 0) {
-                        Delay = -20;
-                        Level level = Entity.level();
+            Delay++;
+            if (target != null && Delay >= 0
+                    && MathUtils.Raycast(Entity.level(), Entity, (float)MathUtils.Sub(target.position(), Entity.position()).length()).getType()
+                        != HitResult.Type.BLOCK
+                    && target.distanceToSqr(Entity) > 12 && Entity.hasLineOfSight(target)) {
+                Delay = -40;
+                Level level = Entity.level();
 
-                        // Copied from ghast
-                        Vec3 vec3 = Entity.getViewVector(1.0F);
-                        double d2 = target.getX() - (Entity.getX() + vec3.x * 4.0);
-                        double d3 = target.getY(0.5) - (0.5 + Entity.getY(0.5));
-                        double d4 = target.getZ() - (Entity.getZ() + vec3.z * 4.0);
-                        Vec3 vec31 = new Vec3(d2, d3, d4);
-                        // end
+                // Copied from ghast
+                Vec3 vec3 = Entity.getViewVector(1.0F);
+                double d2 = target.getX() - (Entity.getX() + vec3.x * 4.0);
+                double d3 = target.getY(0.5) - (0.5 + Entity.getY(0.5));
+                double d4 = target.getZ() - (Entity.getZ() + vec3.z * 4.0);
+                Vec3 vec31 = new Vec3(d2, d3, d4);
+                // end
 
-                        DivineFlameball flame = new DivineFlameball(level, Entity, 2);
-                        flame.setPos(Entity.getX(), Entity.getY() + 2.25, Entity.getZ());
-                        flame.shoot(vec31.x, vec31.y, vec31.z, 2, 0);
-                        level.addFreshEntity(flame);
-                    }
-                }
+                DivineFlameball flame = new DivineFlameball(level, Entity, 2);
+                flame.setPos(Entity.getX(), Entity.getY() + 2.25, Entity.getZ());
+                flame.shoot(vec31.x, vec31.y, vec31.z, 2, 0);
+                level.addFreshEntity(flame);
             }
         }
     }

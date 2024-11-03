@@ -21,5 +21,11 @@
   "entity.lostfaith.judas": "§b犹大§r",
   "entity.lostfaith.lost_turtle_guard": "走丢的老鳖卫士",
 
-  "message.lostfaith.silver_framed_gold_block.interaction_failed": "结构不正确！"
+  "message.lostfaith.silver_framed_gold_block.interaction_failed": "结构不正确！",
+
+  "gui.lostfaith.missions": "= 任务 =",
+  "gui.lostfaith.mission": "  §b>§r %s",
+
+  "text.lostfaith.story.0": "村里不知道谁拿到了罗马银币，现在村里很多人都变成了鳖。听村长说，只要有人一直拿着这银币，就回变成鳖，而且这具有传染性。当初他发现时就立即把村民隔离起来了。人群之中就我这方面的症状最小，因此他们都认为我是上天派下来解救他们的，我也就因此被推举出来。之前在图书馆中查阅到了用§630颗罗马银币§r可以召唤一个叫§6犹大§r的人。他是忠实的门徒，有救人驱魔的能力，但是思想极端，主张战斗，最后走向了背叛。我认为他应该与这件事有关，于是我就踏上了寻找他的道路。",
+  "text.lostfaith.story.1": "收集§630颗罗马银币§r."
 }

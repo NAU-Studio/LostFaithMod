@@ -1,11 +1,13 @@
 package io.naustudio.lostfaith.item.mission;
 
 import io.naustudio.lostfaith.component.LFComponents;
+import io.naustudio.lostfaith.component.mission.BibleMetaData;
 import io.naustudio.lostfaith.gui.book.BibleNewTestaScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -24,7 +26,7 @@ public class ItemBibleNewTesta extends Item {
     public void appendHoverText(ItemStack item, TooltipContext context, List<Component> content, TooltipFlag flags) {
         super.appendHoverText(item, context, content, flags);
 
-        MetaData data = new MetaData(item.get(LFComponents.BibleMetadata));
+        BibleMetaData.Content data = new BibleMetaData.Content(item.get(LFComponents.BibleMetaDataType));
 
         if (data.Finished)
             content.add(Component.translatable("item.lostfaith.bible_new_testa.description.line1_done"));
@@ -40,17 +42,28 @@ public class ItemBibleNewTesta extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
         ItemStack item = player.getItemInHand(usedHand);
-        if (item.get(LFComponents.BibleMetadata.get()) == null)
-            item.set(LFComponents.BibleMetadata.get(), new MetaRecord(player.getName(), false));
-
+        if (!item.has(LFComponents.BibleMetaDataType.get()))
+            item.set(LFComponents.BibleMetaDataType.get(), new BibleMetaData(player.getName(), false));
+        if (!item.has(LFComponents.BibleProgressType))
+            item.set(LFComponents.BibleProgressType.get(), 0);
         if (BibleNewTestaScreen.Current == null)
             Minecraft.getInstance().setScreen(new BibleNewTestaScreen(item));
-
         return InteractionResultHolder.success(item);
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
+        super.inventoryTick(stack, level, entity, slotId, isSelected);
+        if (!stack.has(LFComponents.BibleProgressType))
+            return;
+
+        int progress = stack.get(LFComponents.BibleProgressType);
+        if (Missions.GetCurrentEventMission(progress) instanceof StoryMission)
+            stack.set(LFComponents.BibleProgressType, progress + 1);
     }
 
     public Component GetAuthorText(ItemStack item) {
         return Component.translatable("item.lostfaith.bible_new_testa.description.line3",
-                item.get(LFComponents.BibleMetadata).owner());
+                item.get(LFComponents.BibleMetaDataType).owner());
     }
 }

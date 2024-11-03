@@ -3,15 +3,23 @@ package io.naustudio.lostfaith.gui.book;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import io.naustudio.lostfaith.LostFaithMod;
+import io.naustudio.lostfaith.component.LFComponents;
 import io.naustudio.lostfaith.item.LFItems;
+import io.naustudio.lostfaith.item.mission.Missions;
+import io.naustudio.lostfaith.item.mission.StoryMission;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.FormattedText;
+import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+
+import java.util.List;
+import java.util.Objects;
 
 @OnlyIn(Dist.CLIENT)
 public class BibleNewTestaScreen extends Screen {
@@ -40,9 +48,12 @@ public class BibleNewTestaScreen extends Screen {
         Current = this;
     }
 
+    protected List<StoryMission> Paragraphs;
+
     @Override
     protected void init() {
         CreateControls();
+        Paragraphs = Missions.GetAchievedStories(Objects.requireNonNull(Item.get(LFComponents.BibleProgressType)));
     }
 
     @Override
@@ -68,8 +79,16 @@ public class BibleNewTestaScreen extends Screen {
                     h(96 - titleWidth), v(128), 0xff333333, false);
         }
         if (PageNumber > 0) {
-            int zbPageNumber = PageNumber - 1;
-            // TODO: Show content
+            int zbPageNumber = PageNumber - 1; // Zero based page number
+
+            for (StoryMission m : Paragraphs) {
+                Component c = m.getText();
+                String text = "　　" + c.getString();
+                Style style = c.getStyle();
+
+                graphics.drawWordWrap
+                        (font, FormattedText.of(text, style), h(24), v(16), 152, 0xff333333);
+            }
 
             graphics.drawCenteredString(font, Integer.toString(PageNumber), h(96), 276, 0xffffffff);
         }

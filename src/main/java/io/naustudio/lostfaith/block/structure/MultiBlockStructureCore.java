@@ -1,6 +1,7 @@
 package io.naustudio.lostfaith.block.structure;
 
 import com.mojang.logging.LogUtils;
+import io.naustudio.lostfaith.item.mission.trigger.EventTriggerBus;
 import io.naustudio.lostfaith.util.MathUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -57,6 +58,7 @@ public abstract class MultiBlockStructureCore extends Block {
                 level.destroyBlock(MathUtils.Add(pos, r), false);
             }
             level.destroyBlock(pos, false);
+            EventTriggerBus.OnMultiBlockStructureSucceed(this);
             return InteractionResult.SUCCESS;
         }
         Component testFailedMsg = getTestFailedMessage();

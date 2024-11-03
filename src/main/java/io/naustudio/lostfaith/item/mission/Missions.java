@@ -1,13 +1,16 @@
 package io.naustudio.lostfaith.item.mission;
 
+import io.naustudio.lostfaith.block.LFBlocks;
 import io.naustudio.lostfaith.item.LFItems;
 import io.naustudio.lostfaith.item.mission.types.CollectItemMission;
 import io.naustudio.lostfaith.item.mission.types.MissionBase;
+import io.naustudio.lostfaith.item.mission.types.MultiBlockStructureMission;
 import net.minecraft.core.component.DataComponentMap;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class Missions {
 
@@ -16,8 +19,10 @@ public class Missions {
             new CollectItemMission("text.lostfaith.story.1", new VirtualItemStack(
                     LFItems.RomaSilverCoin.get(),
                     30,
-                    DataComponentMap.EMPTY
+                    null
             )),
+            new StoryMission("text.lostfaith.story.2"),
+            new MultiBlockStructureMission("text.lostfaith.story.3", LFBlocks.SilverFramedGoldBlock.get())
     };
 
 

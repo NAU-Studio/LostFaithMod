@@ -48,7 +48,8 @@ public class MissionOverlay {
 
         int tcenter = graphics.guiHeight() / 2;
         graphics.drawString(font, MissionsText.getVisualOrderText(), 4, tcenter - font.lineHeight, 0xffffffff);
-        Component c = Component.translatable("gui.lostfaith.mission", mission.getText());
+        Component c = Component.translatable("gui.lostfaith.mission",
+                mission.getText().getString() + " " + mission.getProgressText(p).getString());
         graphics.drawString(font, c, 4, tcenter, 0xffffffff);
     }
 }

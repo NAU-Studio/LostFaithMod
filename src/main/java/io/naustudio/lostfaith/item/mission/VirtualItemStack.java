@@ -2,6 +2,7 @@ package io.naustudio.lostfaith.item.mission;
 
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.component.TypedDataComponent;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
@@ -23,13 +24,18 @@ public class VirtualItemStack {
         return item.getCount() >= Count && EqualsNoCountDetection(item);
     }
 
-    public boolean Equals(ItemStack[] items) {
+    public boolean Equals(Inventory items) {
+        return Count(items) >= Count;
+    }
+
+    public int Count(Inventory items) {
         int matchedCount = 0;
-        for (ItemStack item : items) {
+        for (int i = 0; i < items.getContainerSize(); i++) {
+            ItemStack item = items.getItem(i);
             if (EqualsNoCountDetection(item))
                 matchedCount += item.getCount();
         }
-        return matchedCount >= Count;
+        return matchedCount;
     }
 
     protected boolean EqualsNoCountDetection(ItemStack item) {
@@ -37,10 +43,10 @@ public class VirtualItemStack {
     }
 
     protected boolean DataEquals(DataComponentMap map) {
+        if (Datas == null)
+            return true;
         if (map.size() != Datas.size())
             return false;
-        if (Datas.isEmpty())
-            return true;
         for (TypedDataComponent<?> i : map) {
             Object a = map.get(i.type());
             if (a != i.value())

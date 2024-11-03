@@ -57,8 +57,15 @@ public class ItemBibleNewTesta extends Item {
         if (!stack.has(LFComponents.BibleProgressType))
             return;
 
+        if (!(entity instanceof Player))
+            return;
+
+        NextMission(stack, (Player)entity);
+    }
+
+    public void NextMission(ItemStack stack, Player entity) {
         int progress = stack.get(LFComponents.BibleProgressType);
-        if (Missions.GetCurrentEventMission(progress) instanceof StoryMission)
+        if (Missions.GetCurrentEventMission(progress).canContinue(entity) && progress < Missions.Missions.length - 1)
             stack.set(LFComponents.BibleProgressType, progress + 1);
     }
 

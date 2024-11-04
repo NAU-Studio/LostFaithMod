@@ -1,23 +1,25 @@
 package io.naustudio.lostfaith.item.mission.types;
 
 import io.naustudio.lostfaith.block.structure.MultiBlockStructureCore;
-import io.naustudio.lostfaith.item.mission.trigger.EventTriggerBus;
+import io.naustudio.lostfaith.item.mission.Mission;
+import io.naustudio.lostfaith.item.mission.trigger.MultiBlockStructureEventHandler;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 
-public class MultiBlockStructureMission extends MissionBase {
+public class MultiBlockStructureMission extends Mission {
 
     protected boolean Succeed;
 
-    public MultiBlockStructureMission(String textKey, MultiBlockStructureCore coreType) {
-        super(textKey);
-        EventTriggerBus.SubscribeOnMultiBlockStructureSucceed(x -> {
-            if (x == coreType)
+    public MultiBlockStructureMission(int index, Component text, boolean optional, MultiBlockStructureCore coreType) {
+        super(index, text, optional);
+        MultiBlockStructureEventHandler.Add(x -> {
+            if (x.CoreType == coreType)
                 Succeed = true;
         });
     }
 
     @Override
-    public boolean canContinue(Player player) {
+    public boolean Finished(Player player) {
         if (Succeed) {
             Succeed = false;
             return true;

@@ -3,13 +3,28 @@ package io.naustudio.lostfaith.item.mission;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 
-public interface Mission {
+public abstract class Mission {
 
-    Component getText();
+    public int Index;
+    public Component Text;
+    public boolean Optional;
 
-    default Component getProgressText(Player player) {
+    public Mission(int index, Component text, boolean optional) {
+        Index = index;
+        Text = text;
+        Optional = optional;
+    }
+
+    public Component GetText() {
+        return Text;
+    }
+
+    public Component GetProgressText(Player player) {
         return Component.empty();
     }
 
-    boolean canContinue(Player player);
+    public abstract boolean Finished(Player player);
+    public boolean IsOptional() {
+        return Optional;
+    }
 }

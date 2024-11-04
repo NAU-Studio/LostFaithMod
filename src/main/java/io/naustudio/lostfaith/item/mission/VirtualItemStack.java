@@ -20,10 +20,6 @@ public class VirtualItemStack {
         Datas = map;
     }
 
-    public boolean Equals(ItemStack item) {
-        return item.getCount() >= Count && EqualsNoCountDetection(item);
-    }
-
     public boolean Equals(Inventory items) {
         return Count(items) >= Count;
     }

@@ -82,7 +82,7 @@ public class BibleNewTestaScreen extends Screen {
             int zbPageNumber = PageNumber - 1; // Zero based page number
 
             for (StoryMission m : Paragraphs) {
-                Component c = m.getText();
+                Component c = m.GetText();
                 String text = "　　" + c.getString();
                 Style style = c.getStyle();
 

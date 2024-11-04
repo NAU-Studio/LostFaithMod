@@ -2,12 +2,13 @@ package io.naustudio.lostfaith.gui.mission;
 
 import io.naustudio.lostfaith.component.LFComponents;
 import io.naustudio.lostfaith.item.LFItems;
+import io.naustudio.lostfaith.item.mission.Mission;
 import io.naustudio.lostfaith.item.mission.Missions;
-import io.naustudio.lostfaith.item.mission.types.MissionBase;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.FormattedText;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -15,6 +16,8 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderGuiEvent;
+
+import java.util.List;
 
 @EventBusSubscriber({Dist.CLIENT})
 public class MissionOverlay {
@@ -42,14 +45,20 @@ public class MissionOverlay {
 
         int progress = item.get(LFComponents.BibleProgressType);
 
-        MissionBase mission = Missions.GetCurrentMission(progress);
-        if (mission == null)
-            return;
+        List<Mission> missions = Missions.GetCurrentMission(progress);
 
         int tcenter = graphics.guiHeight() / 2;
         graphics.drawString(font, MissionsText.getVisualOrderText(), 4, tcenter - font.lineHeight, 0xffffffff);
-        Component c = Component.translatable("gui.lostfaith.mission",
-                mission.getText().getString() + " " + mission.getProgressText(p).getString());
-        graphics.drawString(font, c, 4, tcenter, 0xffffffff);
+
+        StringBuilder sb = new StringBuilder();
+
+        for (Mission m : missions) {
+            Component c = Component.translatable("gui.lostfaith.mission",
+                    m.GetText().getString() + " " + m.GetProgressText(p).getString());
+            sb.append(c.getString());
+            sb.append('\n');
+        }
+
+        graphics.drawWordWrap(font, FormattedText.of(sb.toString()), 8, tcenter, (graphics.guiWidth() - 16) / 2, 0xffffffff);
     }
 }

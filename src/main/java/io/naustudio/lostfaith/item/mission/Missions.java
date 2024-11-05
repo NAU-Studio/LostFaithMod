@@ -59,7 +59,6 @@ public class Missions {
             Mission m = ms.get(i);
             if (m.Finished(player)) {
                 FinishedMissions.add(m);
-                
             }
             else {
                 if (!m.IsOptional())

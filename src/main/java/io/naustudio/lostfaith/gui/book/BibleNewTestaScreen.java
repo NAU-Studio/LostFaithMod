@@ -81,14 +81,16 @@ public class BibleNewTestaScreen extends Screen {
         if (PageNumber > 0) {
             int zbPageNumber = PageNumber - 1; // Zero based page number
 
-            for (StoryMission m : Paragraphs) {
-                Component c = m.GetText();
-                String text = "　　" + c.getString();
-                Style style = c.getStyle();
+            StringBuilder sb = new StringBuilder();
 
-                graphics.drawWordWrap
-                        (font, FormattedText.of(text, style), h(24), v(16), 152, 0xff333333);
+            for (StoryMission m : Paragraphs) {
+                sb.append("　　");
+                sb.append(m.GetText().getString());
+
+
             }
+            graphics.drawWordWrap
+                    (font, FormattedText.of(sb.toString()), h(24), v(16), 152, 0xff333333);
 
             graphics.drawCenteredString(font, Integer.toString(PageNumber), h(96), 276, 0xffffffff);
         }

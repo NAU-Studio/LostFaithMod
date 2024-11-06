@@ -1,4 +1,4 @@
-package io.naustudio.lostfaith.entity.judas;
+package io.naustudio.lostfaith.entity.turtle.judas;
 
 import io.naustudio.lostfaith.entity.DivineFlameball;
 import io.naustudio.lostfaith.util.MathUtils;
@@ -19,7 +19,6 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.EventHooks;

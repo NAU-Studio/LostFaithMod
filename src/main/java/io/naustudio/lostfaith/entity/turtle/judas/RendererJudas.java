@@ -1,4 +1,4 @@
-package io.naustudio.lostfaith.entity.judas;
+package io.naustudio.lostfaith.entity.turtle.judas;
 
 import io.naustudio.lostfaith.LostFaithMod;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

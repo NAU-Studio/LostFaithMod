@@ -1,4 +1,4 @@
-package io.naustudio.lostfaith.entity.turtle_guard.lost;
+package io.naustudio.lostfaith.entity.turtle;
 
 import io.naustudio.lostfaith.LostFaithMod;
 import net.minecraft.client.model.HumanoidModel;
@@ -8,12 +8,12 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 
-public class ModelLostTurtleGuard extends HumanoidModel<EntityLostTurtleGuard> {
+public class ModelTurtle extends HumanoidModel<ZombieBasedTurtle> {
 
     public static final ModelLayerLocation LayerLocation
-            = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(LostFaithMod.MODID, "lost_turtle_guard"), "main");
+            = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(LostFaithMod.MODID, "turtle_model"), "main");
 
-    public ModelLostTurtleGuard(ModelPart root) {
+    public ModelTurtle(ModelPart root) {
         super(root);
     }
 

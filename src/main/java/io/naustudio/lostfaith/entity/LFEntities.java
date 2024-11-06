@@ -1,8 +1,8 @@
 package io.naustudio.lostfaith.entity;
 
 import io.naustudio.lostfaith.LostFaithMod;
-import io.naustudio.lostfaith.entity.judas.EntityJudas;
-import io.naustudio.lostfaith.entity.turtle_guard.lost.EntityLostTurtleGuard;
+import io.naustudio.lostfaith.entity.turtle.judas.EntityJudas;
+import io.naustudio.lostfaith.entity.turtle.lost.EntityLostTurtleGuard;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;

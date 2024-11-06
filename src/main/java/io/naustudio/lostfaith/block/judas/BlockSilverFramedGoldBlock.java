@@ -3,7 +3,7 @@ package io.naustudio.lostfaith.block.judas;
 import io.naustudio.lostfaith.block.LFBlocks;
 import io.naustudio.lostfaith.block.structure.MultiBlockStructureCore;
 import io.naustudio.lostfaith.entity.LFEntities;
-import io.naustudio.lostfaith.entity.judas.EntityJudas;
+import io.naustudio.lostfaith.entity.turtle.judas.EntityJudas;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;

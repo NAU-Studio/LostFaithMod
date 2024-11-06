@@ -4,12 +4,12 @@ import com.mojang.logging.LogUtils;
 import io.naustudio.lostfaith.block.LFBlocks;
 import io.naustudio.lostfaith.component.LFComponents;
 import io.naustudio.lostfaith.entity.LFEntities;
-import io.naustudio.lostfaith.entity.judas.EntityJudas;
-import io.naustudio.lostfaith.entity.judas.ModelJudas;
-import io.naustudio.lostfaith.entity.judas.RendererJudas;
-import io.naustudio.lostfaith.entity.turtle_guard.lost.EntityLostTurtleGuard;
-import io.naustudio.lostfaith.entity.turtle_guard.lost.ModelLostTurtleGuard;
-import io.naustudio.lostfaith.entity.turtle_guard.lost.RendererLostTurtleGuard;
+import io.naustudio.lostfaith.entity.turtle.judas.EntityJudas;
+import io.naustudio.lostfaith.entity.turtle.judas.ModelJudas;
+import io.naustudio.lostfaith.entity.turtle.judas.RendererJudas;
+import io.naustudio.lostfaith.entity.turtle.lost.EntityLostTurtleGuard;
+import io.naustudio.lostfaith.entity.turtle.ModelTurtle;
+import io.naustudio.lostfaith.entity.turtle.RendererTurtle;
 import io.naustudio.lostfaith.item.LFItems;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.registries.Registries;
@@ -104,13 +104,13 @@ public class LostFaithMod {
         @SubscribeEvent
         public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
             event.registerLayerDefinition(ModelJudas.LayerLocation, ModelJudas::createBodyLayer);
-            event.registerLayerDefinition(ModelLostTurtleGuard.LayerLocation, ModelLostTurtleGuard::createBodyLayer);
+            event.registerLayerDefinition(ModelTurtle.LayerLocation, ModelTurtle::createBodyLayer);
         }
 
         @SubscribeEvent
         public static void onRegisterRenderer(EntityRenderersEvent.RegisterRenderers event) {
             event.registerEntityRenderer(LFEntities.Judas.get(), RendererJudas::new);
-            event.registerEntityRenderer(LFEntities.LostTurtleGuard.get(), RendererLostTurtleGuard::new);
+            event.registerEntityRenderer(LFEntities.LostTurtleGuard.get(), RendererTurtle::new);
         }
 
         @SubscribeEvent

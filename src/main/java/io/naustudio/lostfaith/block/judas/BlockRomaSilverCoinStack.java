@@ -60,7 +60,8 @@ public class BlockRomaSilverCoinStack extends Block {
         if (stack.getItem() == LFItems.RomaSilverCoin.get() && IncreaseCoin(level, pos, state))
         {
             level.playSound(player, pos, getSoundType(state, level, pos, player).getPlaceSound(), SoundSource.BLOCKS, 1, 1);
-            stack.setCount(stack.getCount() - 1);
+            if (!player.isCreative())
+                stack.setCount(stack.getCount() - 1);
             return ItemInteractionResult.SUCCESS;
         }
         return ItemInteractionResult.FAIL;

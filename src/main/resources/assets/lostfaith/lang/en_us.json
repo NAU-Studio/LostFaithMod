@@ -19,6 +19,7 @@
 
   "entity.lostfaith.judas": "§bJudas§r",
   "entity.lostfaith.lost_turtle_guard": "Lost Turtle Guard",
+  "entity.lostfaith.royal_turtle_guard": "Royal Turtle Guard",
 
   "message.lostfaith.silver_framed_gold_block.interaction_failed": "Structure incorrect!"
 }

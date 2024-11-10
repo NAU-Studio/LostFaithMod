@@ -10,7 +10,7 @@ import net.minecraft.world.level.Level;
 
 public class EntityLostTurtleGuard extends ZombieBasedTurtle {
 
-    ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(LostFaithMod.MODID, "textures/entity/lost_turtle_guard.png");
+    private static final ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(LostFaithMod.MODID, "textures/entity/lost_turtle_guard.png");
 
     public EntityLostTurtleGuard(EntityType<EntityLostTurtleGuard> type, Level level) {
         super(type, level);

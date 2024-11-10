@@ -10,6 +10,7 @@ import io.naustudio.lostfaith.entity.turtle.judas.RendererJudas;
 import io.naustudio.lostfaith.entity.turtle.lost.EntityLostTurtleGuard;
 import io.naustudio.lostfaith.entity.turtle.ModelTurtle;
 import io.naustudio.lostfaith.entity.turtle.RendererTurtle;
+import io.naustudio.lostfaith.entity.turtle.royal.EntityRoyalTurtleGuard;
 import io.naustudio.lostfaith.item.LFItems;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.registries.Registries;
@@ -111,12 +112,14 @@ public class LostFaithMod {
         public static void onRegisterRenderer(EntityRenderersEvent.RegisterRenderers event) {
             event.registerEntityRenderer(LFEntities.Judas.get(), RendererJudas::new);
             event.registerEntityRenderer(LFEntities.LostTurtleGuard.get(), RendererTurtle::new);
+            event.registerEntityRenderer(LFEntities.RoyalTurtleGuard.get(), RendererTurtle::new);
         }
 
         @SubscribeEvent
         public static void onAttributeCreate(EntityAttributeCreationEvent event) {
             event.put(LFEntities.Judas.get(), EntityJudas.CreateAttributes().build());
             event.put(LFEntities.LostTurtleGuard.get(), EntityLostTurtleGuard.CreateAttributes().build());
+            event.put(LFEntities.RoyalTurtleGuard.get(), EntityRoyalTurtleGuard.CreateAttributes().build());
         }
     }
 }

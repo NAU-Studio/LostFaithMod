@@ -1,5 +1,6 @@
 package io.naustudio.lostfaith.entity.turtle;
 
+import net.minecraft.core.MappedRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;

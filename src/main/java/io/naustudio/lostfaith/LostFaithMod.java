@@ -12,10 +12,13 @@ import io.naustudio.lostfaith.entity.turtle.ModelTurtle;
 import io.naustudio.lostfaith.entity.turtle.RendererTurtle;
 import io.naustudio.lostfaith.entity.turtle.royal.EntityRoyalTurtleGuard;
 import io.naustudio.lostfaith.item.LFItems;
+import io.naustudio.lostfaith.worldgen.structure_types.LFStructures;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.RegistryDataLoader;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.VanillaPackResources;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.*;
@@ -60,6 +63,7 @@ public class LostFaithMod {
         LFEntities.Registry.register(modEventBus);
         TABS.register(modEventBus);
         LFComponents.Registry.register(modEventBus);
+        LFStructures.Registry.register(modEventBus);
 
         modEventBus.register(this);
     }
@@ -71,8 +75,7 @@ public class LostFaithMod {
             for (Field field : fields) {
                 if (field.getType() == DeferredItem.class && Modifier.isPublic(field.getModifiers())) {
                     try {
-                        event.accept((DeferredItem<? extends Item>)field.get(null));
-                        LOGGER.debug("Registered {}", field.getName());
+                        event.accept((DeferredItem<? extends Item>) field.get(null));
                     } catch (IllegalAccessException ex) {
                         LOGGER.error(ex.getMessage());
                     }

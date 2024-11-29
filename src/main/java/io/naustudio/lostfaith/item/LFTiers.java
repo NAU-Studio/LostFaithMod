@@ -5,6 +5,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
@@ -40,7 +41,7 @@ public enum LFTiers implements Tier {
         return Damage;
     }
 
-    public TagKey<Block> getIncorrectBlocksForDrops() {
+    public @NotNull TagKey<Block> getIncorrectBlocksForDrops() {
         return IncorrectBlocks;
     }
 
@@ -48,7 +49,7 @@ public enum LFTiers implements Tier {
         return EnchantmentValue;
     }
 
-    public Ingredient getRepairIngredient() {
+    public @NotNull Ingredient getRepairIngredient() {
         return RepairIngredient;
     }
 }

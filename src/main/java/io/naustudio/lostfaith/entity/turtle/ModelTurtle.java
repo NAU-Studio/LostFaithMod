@@ -8,6 +8,7 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 
+@SuppressWarnings("unused")
 public class ModelTurtle extends HumanoidModel<ZombieBasedTurtle> {
 
     public static final ModelLayerLocation LayerLocation

@@ -7,6 +7,7 @@ import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+@SuppressWarnings("unused")
 public class LFStructures {
 
     public static final DeferredRegister<StructureType<?>> Registry

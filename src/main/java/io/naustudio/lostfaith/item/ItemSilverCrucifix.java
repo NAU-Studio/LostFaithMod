@@ -1,6 +1,6 @@
 package io.naustudio.lostfaith.item;
 
-import io.naustudio.lostfaith.entity.DivineFlameball;
+import io.naustudio.lostfaith.entity.DivineFireball;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
@@ -24,10 +24,10 @@ public class ItemSilverCrucifix extends Item {
         ItemStack item = player.getItemInHand(hand);
 
         Vec3 pos = player.getEyePosition();
-        DivineFlameball flameball = new DivineFlameball(level, player, 3);
-        flameball.setPos(pos);
-        flameball.shootFromRotation(player, player.getXRot(), player.getYRot(), 0, 2, 0);
-        level.addFreshEntity(flameball);
+        DivineFireball fireball = new DivineFireball(level, player, 3);
+        fireball.setPos(pos);
+        fireball.shootFromRotation(player, player.getXRot(), player.getYRot(), 0, 2, 0);
+        level.addFreshEntity(fireball);
 
         player.playSound(SoundEvents.FIRECHARGE_USE);
 

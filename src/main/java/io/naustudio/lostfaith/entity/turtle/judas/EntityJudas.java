@@ -1,6 +1,6 @@
 package io.naustudio.lostfaith.entity.turtle.judas;
 
-import io.naustudio.lostfaith.entity.DivineFlameball;
+import io.naustudio.lostfaith.entity.DivineFireball;
 import io.naustudio.lostfaith.util.MathUtils;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
@@ -22,11 +22,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.EventHooks;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public class EntityJudas extends Monster {
 
     final ServerBossEvent BossInfo
-            = (ServerBossEvent) new ServerBossEvent(getDisplayName(), BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.PROGRESS).setDarkenScreen(true);
+            = (ServerBossEvent) new ServerBossEvent(Objects.requireNonNull(getDisplayName()), BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.PROGRESS).setDarkenScreen(true);
 
     public EntityJudas(EntityType<EntityJudas> type, Level level) {
         super(type, level);
@@ -70,13 +73,13 @@ public class EntityJudas extends Monster {
     }
 
     @Override
-    public void startSeenByPlayer(ServerPlayer p) {
+    public void startSeenByPlayer(@NotNull ServerPlayer p) {
         super.startSeenByPlayer(p);
         BossInfo.addPlayer(p);
     }
 
     @Override
-    public void stopSeenByPlayer(ServerPlayer p) {
+    public void stopSeenByPlayer(@NotNull ServerPlayer p) {
         super.stopSeenByPlayer(p);
         BossInfo.removePlayer(p);
     }
@@ -116,7 +119,7 @@ public class EntityJudas extends Monster {
             LivingEntity target = Entity.getTarget();
             Delay++;
             if (target != null && Delay >= 0
-                    && MathUtils.Raycast(Entity.level(), Entity, (float)MathUtils.Sub(target.position(), Entity.position()).length()).getType()
+                    && MathUtils.RaycastBlock(Entity.level(), Entity, (float)MathUtils.Sub(target.position(), Entity.position()).length()).getType()
                         != HitResult.Type.BLOCK
                     && target.distanceToSqr(Entity) > 12 && Entity.hasLineOfSight(target)) {
                 Delay = -40;
@@ -130,7 +133,7 @@ public class EntityJudas extends Monster {
                 Vec3 vec31 = new Vec3(d2, d3, d4);
                 // end
 
-                DivineFlameball flame = new DivineFlameball(level, Entity, 2);
+                DivineFireball flame = new DivineFireball(level, Entity, 2);
                 flame.setPos(Entity.getX(), Entity.getY() + 2.25, Entity.getZ());
                 flame.shoot(vec31.x, vec31.y, vec31.z, 2, 0);
                 level.addFreshEntity(flame);

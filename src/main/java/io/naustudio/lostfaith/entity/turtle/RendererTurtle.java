@@ -3,6 +3,7 @@ package io.naustudio.lostfaith.entity.turtle;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.NotNull;
 
 public class RendererTurtle extends MobRenderer<ZombieBasedTurtle, ModelTurtle> {
 
@@ -11,7 +12,7 @@ public class RendererTurtle extends MobRenderer<ZombieBasedTurtle, ModelTurtle> 
     }
 
     @Override
-    public ResourceLocation getTextureLocation(ZombieBasedTurtle e) {
+    public @NotNull ResourceLocation getTextureLocation(ZombieBasedTurtle e) {
         return e.Texture();
     }
 }

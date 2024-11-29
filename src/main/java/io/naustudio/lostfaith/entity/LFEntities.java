@@ -11,6 +11,7 @@ import net.minecraft.world.entity.MobCategory;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+@SuppressWarnings("unused")
 public class LFEntities {
 
     public static DeferredRegister<EntityType<?>> Registry = DeferredRegister.create(Registries.ENTITY_TYPE, LostFaithMod.MODID);
@@ -18,16 +19,19 @@ public class LFEntities {
     public static final DeferredHolder<EntityType<?>, EntityType<EntityJudas>> Judas
             = Registry.register("judas", () -> EntityType.Builder.of(EntityJudas::new, MobCategory.MONSTER)
             .sized(1, 2.5f).setTrackingRange(36)
-            .eyeHeight(2).build(ResourceLocation.fromNamespaceAndPath(LostFaithMod.MODID, "judas").toString()));
+            .eyeHeight(2)
+            .build(ResourceLocation.fromNamespaceAndPath(LostFaithMod.MODID, "judas").toString()));
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityLostTurtleGuard>> LostTurtleGuard
             = Registry.register("lost_turtle_guard", () -> EntityType.Builder.of(EntityLostTurtleGuard::new, MobCategory.MONSTER)
             .sized(0.6F, 1.95F)
             .eyeHeight(1.75F)
-            .clientTrackingRange(8).build(ResourceLocation.fromNamespaceAndPath(LostFaithMod.MODID, "lost_turtle_guard").toString()));
+            .clientTrackingRange(8)
+            .build(ResourceLocation.fromNamespaceAndPath(LostFaithMod.MODID, "lost_turtle_guard").toString()));
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityRoyalTurtleGuard>> RoyalTurtleGuard
             = Registry.register("royal_turtle_guard", () -> EntityType.Builder.of(EntityRoyalTurtleGuard::new, MobCategory.MONSTER)
             .sized(0.6F, 1.95F)
-            .eyeHeight(1.75F).build(ResourceLocation.fromNamespaceAndPath(LostFaithMod.MODID, "royal_turtle_guard").toString()));
+            .eyeHeight(1.75F)
+            .build(ResourceLocation.fromNamespaceAndPath(LostFaithMod.MODID, "royal_turtle_guard").toString()));
 }

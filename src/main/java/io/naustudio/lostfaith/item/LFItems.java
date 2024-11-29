@@ -9,6 +9,7 @@ import net.minecraft.world.item.SwordItem;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+@SuppressWarnings("unused")
 public class LFItems {
 
     public static final DeferredRegister.Items Registry = DeferredRegister.createItems(LostFaithMod.MODID);

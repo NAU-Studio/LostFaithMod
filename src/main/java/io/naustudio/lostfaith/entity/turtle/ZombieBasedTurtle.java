@@ -1,6 +1,5 @@
 package io.naustudio.lostfaith.entity.turtle;
 
-import net.minecraft.core.MappedRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -11,6 +10,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 public abstract class ZombieBasedTurtle extends Zombie {
 
@@ -31,7 +31,7 @@ public abstract class ZombieBasedTurtle extends Zombie {
     }
 
     @Override
-    protected SoundEvent getHurtSound(DamageSource source) {
+    protected SoundEvent getHurtSound(@NotNull DamageSource source) {
         return null;
     }
 
@@ -41,12 +41,12 @@ public abstract class ZombieBasedTurtle extends Zombie {
     }
 
     @Override
-    protected SoundEvent getStepSound() {
+    protected @NotNull SoundEvent getStepSound() {
         return SoundEvents.ZOMBIE_STEP;
     }
 
     @Override
-    protected SoundEvent getSwimSound() {
+    protected @NotNull SoundEvent getSwimSound() {
         return SoundEvents.TURTLE_SWIM;
     }
 
@@ -58,12 +58,12 @@ public abstract class ZombieBasedTurtle extends Zombie {
     protected static final Fallsounds FallSound = new Fallsounds(SoundEvents.SLIME_JUMP_SMALL, SoundEvents.SLIME_JUMP);
 
     @Override
-    public Fallsounds getFallSounds() {
+    public @NotNull Fallsounds getFallSounds() {
         return FallSound;
     }
 
     @Override
-    protected ItemStack getSkull() {
+    protected @NotNull ItemStack getSkull() {
         return ItemStack.EMPTY;
     }
 

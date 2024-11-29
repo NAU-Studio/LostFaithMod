@@ -16,9 +16,7 @@ import io.naustudio.lostfaith.worldgen.structure_types.LFStructures;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.RegistryDataLoader;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.VanillaPackResources;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.*;
@@ -26,7 +24,6 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -57,7 +54,7 @@ public class LostFaithMod {
                     .icon(() -> new ItemStack(LFItems.Crucifix.get()))
                     .title(Component.translatable("item_group.lostfaith_main")).build());
 
-    public LostFaithMod(IEventBus modEventBus, ModContainer container) {
+    public LostFaithMod(IEventBus modEventBus) {
         LFBlocks.Registry.register(modEventBus);
         LFItems.Registry.register(modEventBus);
         LFEntities.Registry.register(modEventBus);

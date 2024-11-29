@@ -15,15 +15,15 @@ public class MathUtils {
         return deg / 180 * Pi;
     }
 
-    public static BlockPos Add(BlockPos left, BlockPos right) {
+    public static BlockPos Add(BlockPos left, BlockPos right) { // Thank you, Minecraft.
         return new BlockPos(left.getX() + right.getX(), left.getY() + right.getY(), left.getZ() + right.getZ());
     }
 
-    public static Vec3 Sub(Vec3 left, Vec3 right) {
+    public static Vec3 Sub(Vec3 left, Vec3 right) { // Why?
         return new Vec3(left.x - right.x, left.y - right.y, left.z - right.z);
     }
 
-    public static BlockHitResult Raycast(Level level, Entity entity, float length) {
+    public static BlockHitResult RaycastBlock(Level level, Entity entity, float length) {
         Vec3 eyePos = entity.getEyePosition();
         Vec3 e = eyePos.add(entity.calculateViewVector(entity.getXRot(), entity.getYRot()).scale(length));
         return level.clip(new ClipContext(eyePos, e, ClipContext.Block.COLLIDER, ClipContext.Fluid.ANY, entity));

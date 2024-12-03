@@ -11,12 +11,18 @@ import io.naustudio.lostfaith.entity.turtle_guard.lost.EntityLostTurtleGuard;
 import io.naustudio.lostfaith.entity.turtle_guard.lost.ModelLostTurtleGuard;
 import io.naustudio.lostfaith.entity.turtle_guard.lost.RendererLostTurtleGuard;
 import io.naustudio.lostfaith.item.LFItems;
+import io.naustudio.lostfaith.item.mission.Missions;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.ReloadableServerResources;
+import net.minecraft.server.commands.ReloadCommand;
+import net.minecraft.server.packs.resources.ReloadInstance;
+import net.minecraft.server.packs.resources.ReloadableResourceManager;
 import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.*;
@@ -27,16 +33,19 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
-import net.neoforged.neoforge.registries.DataPackRegistryEvent;
+import net.neoforged.neoforge.event.server.ServerStoppingEvent;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.resource.ResourcePackLoader;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
@@ -64,8 +73,6 @@ public class LostFaithMod {
         LFComponents.Registry.register(modEventBus);
         TABS.register(modEventBus);
 
-
-
         modEventBus.register(this);
     }
 
@@ -76,7 +83,7 @@ public class LostFaithMod {
             for (Field field : fields) {
                 if (field.getType() == DeferredItem.class && Modifier.isPublic(field.getModifiers())) {
                     try {
-                        event.accept((DeferredItem<? extends Item>)field.get(null));
+                        event.accept((DeferredItem<? extends Item>) field.get(null));
                         LOGGER.debug("Registered {}", field.getName());
                     } catch (IllegalAccessException ex) {
                         LOGGER.error(ex.getMessage());

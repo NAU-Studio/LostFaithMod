@@ -27,9 +27,9 @@
   "gui.lostfaith.mission": "§b>§r %s",
   "gui.lostfaith.mission.collect.progress": "[%d / %d]",
 
-  "text.lostfaith.story.0": "Someone in village got the roman silver coins. Now many people in the village have turned into turtles. According to the village chief, if someone keeps holding this silver coin, it will turn into a turtle and this is contagious. When he found out anyone became like this, he immediately quarantined the villagers. I was the least symptomatic in village, so they all thought that I was a messenger from heaven to rescue them and I was therefore elected. Earlier, I found in the library that I could summon a man named §6Judas§r for §630 roman silver coins§r. He was a faithful disciple with the ability to save people and exorcise demons. But he was extremely thoughtful, advocated fighting, and finally went to betrayal. I thought he had something to do with it, so I set out to find him.",
-  "text.lostfaith.story.1": "Collect §630 roman silver coins§r.",
-  "text.lostfaith.story.2": "§7[Optional]§r Make a §6silver crucifix§r.",
-  "text.lostfaith.story.3": "Now the coins are enough. It's time to summon him. As I remembered, it only need to place like this: \n＠－－－＠\n－－－－－\n＠－＃－＠\n－－－－－\n＠－－－＠\nEach \"＠\" uses §64 silver coins§r, and the \"＃\" in center is crafted from §6a gold block§r and §66 silver coins§r Place like it and then he will summon.\n",
+  "text.lostfaith.story.1": "　　Someone in village got the roman silver coins. Now many people in the village have turned into turtles. According to the village chief, if someone keeps holding this silver coin, it will turn into a turtle and this is contagious. When he found out anyone became like this, he immediately quarantined the villagers. I was the least symptomatic in village, so they all thought that I was a messenger from heaven to rescue them and I was therefore elected. Earlier, I found in the library that I could summon a man named §6Judas§r for §630 roman silver coins§r. He was a faithful disciple with the ability to save people and exorcise demons. But he was extremely thoughtful, advocated fighting, and finally went to betrayal. I thought he had something to do with it, so I set out to find him.",
+  "text.lostfaith.story.2a": "Collect §630 roman silver coins§r.",
+  "text.lostfaith.story.2b": "§7[Optional]§r Make a §6silver crucifix§r.",
+  "text.lostfaith.story.3": "　　Now the coins are enough. It's time to summon him. As I remembered, it only need to place like this: \n＠－－－＠\n－－－－－\n＠－＃－＠\n－－－－－\n＠－－－＠\nEach \"＠\" uses §64 silver coins§r, and the \"＃\" in center is crafted from §6a gold block§r and §66 silver coins§r Place like it and then he will summon.\n",
   "text.lostfaith.story.4": "Summon §6Judas§r."
 }

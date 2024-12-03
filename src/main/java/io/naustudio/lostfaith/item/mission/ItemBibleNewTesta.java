@@ -1,7 +1,7 @@
 package io.naustudio.lostfaith.item.mission;
 
 import io.naustudio.lostfaith.component.LFComponents;
-import io.naustudio.lostfaith.component.mission.BibleMetaData;
+import io.naustudio.lostfaith.component.mission.BibleData;
 import io.naustudio.lostfaith.gui.book.BibleNewTestaScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
@@ -26,26 +26,28 @@ public class ItemBibleNewTesta extends Item {
     public void appendHoverText(ItemStack item, TooltipContext context, List<Component> content, TooltipFlag flags) {
         super.appendHoverText(item, context, content, flags);
 
-        BibleMetaData.Content data = new BibleMetaData.Content(item.get(LFComponents.BibleMetaDataType));
+        if (!item.has(LFComponents.BibleMetaDataType))
+            return;
 
-        if (data.Finished)
-            content.add(Component.translatable("item.lostfaith.bible_new_testa.description.line1_done"));
-        else
-            content.add(Component.translatable("item.lostfaith.bible_new_testa.description.line1_tobecontinued"));
+        BibleData data = item.get(LFComponents.BibleMetaDataType);
+
+     // content.add(Component.translatable("item.lostfaith.bible_new_testa.description.line1_done"));
+        content.add(Component.translatable("item.lostfaith.bible_new_testa.description.line1_tobecontinued"));
         content.add(Component.translatable("item.lostfaith.bible_new_testa.description.line2"));
-        Component line3 = data.Owner == null
+        Component line3 = data.owner() == null
                 ? Component.translatable("item.lostfaith.bible_new_testa.description.line3_unsigned")
                 : GetAuthorText(item);
-                content.add(line3);
+        content.add(line3);
     }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
+        Missions.ReloadMissions();
+
         ItemStack item = player.getItemInHand(usedHand);
         if (!item.has(LFComponents.BibleMetaDataType.get()))
-            item.set(LFComponents.BibleMetaDataType.get(), new BibleMetaData(player.getName(), false));
-        if (!item.has(LFComponents.BibleProgressType))
-            item.set(LFComponents.BibleProgressType.get(), 0);
+            item.set(LFComponents.BibleMetaDataType.get(), new BibleData(player.getName(), List.of(), List.of()));
+
         if (BibleNewTestaScreen.Current == null)
             Minecraft.getInstance().setScreen(new BibleNewTestaScreen(item));
         return InteractionResultHolder.success(item);
@@ -54,16 +56,10 @@ public class ItemBibleNewTesta extends Item {
     @Override
     public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotId, boolean isSelected) {
         super.inventoryTick(stack, level, entity, slotId, isSelected);
-        if (!stack.has(LFComponents.BibleProgressType))
+        if (!stack.has(LFComponents.BibleMetaDataType))
             return;
 
-        if (!(entity instanceof Player))
-            return;
-
-        int progress = stack.get(LFComponents.BibleProgressType);
-
-        if (Missions.CheckFinish(progress, (Player)entity))
-            stack.set(LFComponents.BibleProgressType, progress + 1);
+        BibleData data = stack.get(LFComponents.BibleMetaDataType);
     }
 
     public Component GetAuthorText(ItemStack item) {

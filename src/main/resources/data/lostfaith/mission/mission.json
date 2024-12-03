@@ -1,0 +1,59 @@
+{
+  "begin": [ "1" ],
+  "1": {
+    "type": "story",
+    "text": {
+      "type": "translatable",
+      "translate": "text.lostfaith.story.1"
+    },
+    "next": [
+      "2a",
+      "2b"
+    ]
+  },
+  "2a": {
+    "type": "collect_item",
+    "text": {
+      "type": "translatable",
+      "translate": "text.lostfaith.story.2a"
+    },
+    "item": {
+      "id": "lostfaith:roma_silver_coin",
+      "count": 30
+    },
+    "next": [ "3" ]
+  },
+  "2b": {
+    "type": "collect_item",
+    "text": {
+      "type": "translatable",
+      "translate": "text.lostfaith.story.2b"
+    },
+    "item": {
+      "id": "lostfaith:silver_crucifix"
+    },
+    "next": []
+  },
+  "3": {
+    "type": "story",
+    "text": {
+      "type": "translatable",
+      "translate": "text.lostfaith.story.3"
+    },
+    "next": [
+      "2a",
+      "2b"
+    ]
+  },
+  "4": {
+    "type": "activate",
+    "text": {
+      "type": "translatable",
+      "translate": "text.lostfaith.story.4"
+    },
+    "block": {
+      "Name": "lostfaith:silver_framed_gold_block"
+    },
+    "next": []
+  }
+}

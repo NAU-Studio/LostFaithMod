@@ -7,19 +7,28 @@ import io.naustudio.lostfaith.component.LFComponents;
 import io.naustudio.lostfaith.item.LFItems;
 import io.naustudio.lostfaith.item.mission.Missions;
 import io.naustudio.lostfaith.item.mission.StoryMission;
+import net.minecraft.client.ComponentCollector;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.StringSplitter;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FormattedCharSequence;
+import net.minecraft.util.StringDecomposer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.WrittenBookItem;
+import net.minecraft.world.item.component.WrittenBookContent;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.IntStream;
 
 @OnlyIn(Dist.CLIENT)
 public class BibleNewTestaScreen extends Screen {
@@ -53,7 +62,12 @@ public class BibleNewTestaScreen extends Screen {
     @Override
     protected void init() {
         CreateControls();
-        Paragraphs = Missions.GetAchievedStories(Objects.requireNonNull(Item.get(LFComponents.BibleProgressType)));
+        Paragraphs = Missions.GetAchievedStories(Objects.requireNonNull(Item.get(LFComponents.BibleMetaDataType)).progress());
+
+        for (StoryMission p : Paragraphs) {
+            Lines.addAll(font.getSplitter().splitLines(p.Text, 156, p.Text.getStyle()));
+            Lines.add(FormattedText.EMPTY); // Paragraph spacing
+        }
     }
 
     @Override
@@ -63,6 +77,8 @@ public class BibleNewTestaScreen extends Screen {
         graphics.blit(img, (width - 192) / 2, 16, 0, 0, 192, 256, 192, 256);
     }
 
+    private List<FormattedText> Lines = new ArrayList<>();
+
     @Override
     public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
         super.render(graphics, mouseX, mouseY, partialTick);
@@ -71,26 +87,26 @@ public class BibleNewTestaScreen extends Screen {
             PoseStack pose = graphics.pose();
             pose.pushPose();
             pose.scale(2, 2, 2);
-            graphics.drawString(font, TitleText,
-                    h(96 - titleWidth) / 2, v(64) / 2, 0xff333333, false);
+            graphics.drawWordWrap(font, TitleText,
+                    h(96 - titleWidth) / 2, v(64) / 2, 96, 0xff333333);
             pose.popPose();
             Component author = LFItems.BibleNewTesta.get().GetAuthorText(Item);
-            graphics.drawString(font, author,
-                    h(96 - titleWidth), v(128), 0xff333333, false);
+            graphics.drawWordWrap(font, author,
+                    h(96 - titleWidth), v(128), 96, 0xff333333);
         }
         if (PageNumber > 0) {
             int zbPageNumber = PageNumber - 1; // Zero based page number
 
-            StringBuilder sb = new StringBuilder();
+            // Page lines: 225(Page Height) / 9(Line Height) = 25
+            int lineStartIndex = 25 * zbPageNumber;
 
-            for (StoryMission m : Paragraphs) {
-                sb.append("　　");
-                sb.append(m.GetText().getString());
-
-
+            for (int i = lineStartIndex, j = 0; // i: line start index. j: line vertical offset
+                // Page lines - 1(To zero based) = 24
+                 i < Math.min(lineStartIndex + 25, Lines.stream().count() - 1);
+                 ++i, j += font.lineHeight) {
+                graphics.drawWordWrap(font, Lines.get(i), h(24), v(16 + j),
+                        156, 0xff333333);
             }
-            graphics.drawWordWrap
-                    (font, FormattedText.of(sb.toString()), h(24), v(16), 152, 0xff333333);
 
             graphics.drawCenteredString(font, Integer.toString(PageNumber), h(96), 276, 0xffffffff);
         }

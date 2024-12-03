@@ -29,7 +29,8 @@ import java.util.Objects;
 public class EntityJudas extends Monster {
 
     final ServerBossEvent BossInfo
-            = (ServerBossEvent) new ServerBossEvent(Objects.requireNonNull(getDisplayName()), BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.PROGRESS).setDarkenScreen(true);
+            = (ServerBossEvent) new ServerBossEvent(Objects.requireNonNull(getDisplayName()),
+            BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.PROGRESS).setDarkenScreen(true);
 
     public EntityJudas(EntityType<EntityJudas> type, Level level) {
         super(type, level);

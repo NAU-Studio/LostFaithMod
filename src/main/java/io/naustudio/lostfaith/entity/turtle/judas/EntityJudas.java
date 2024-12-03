@@ -57,7 +57,7 @@ public class EntityJudas extends Monster {
                 .add(Attributes.FOLLOW_RANGE, 40)
                 .add(Attributes.MAX_HEALTH, 400)
                 .add(Attributes.ARMOR, 15)
-                .add(Attributes.KNOCKBACK_RESISTANCE, 0.5f);
+                .add(Attributes.KNOCKBACK_RESISTANCE, 0.5);
     }
 
     private boolean flameEnabled = false;

@@ -20,9 +20,9 @@ public abstract class ZombieBasedTurtle extends Zombie {
 
     public static AttributeSupplier.Builder CreateAttributes() {
         return createAttributes()
-                .add(Attributes.MOVEMENT_SPEED, 0.3f)
-                .add(Attributes.MAX_HEALTH, 30f)
-                .add(Attributes.KNOCKBACK_RESISTANCE, 0.5f);
+                .add(Attributes.MOVEMENT_SPEED, 0.3)
+                .add(Attributes.MAX_HEALTH, 30)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 0.5);
     }
 
     @Override

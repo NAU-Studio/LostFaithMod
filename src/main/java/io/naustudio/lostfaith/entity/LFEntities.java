@@ -3,6 +3,7 @@ package io.naustudio.lostfaith.entity;
 import io.naustudio.lostfaith.LostFaithMod;
 import io.naustudio.lostfaith.entity.turtle.judas.EntityJudas;
 import io.naustudio.lostfaith.entity.turtle.lost.EntityLostTurtleGuard;
+import io.naustudio.lostfaith.entity.turtle.royal.EntityKingTurtle;
 import io.naustudio.lostfaith.entity.turtle.royal.EntityRoyalTurtleGuard;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -34,4 +35,10 @@ public class LFEntities {
             .sized(0.6F, 1.95F)
             .eyeHeight(1.75F)
             .build(ResourceLocation.fromNamespaceAndPath(LostFaithMod.MODID, "royal_turtle_guard").toString()));
+
+    public static final DeferredHolder<EntityType<?>, EntityType<EntityKingTurtle>> KingTurtle
+            = Registry.register("king_turtle", () -> EntityType.Builder.of(EntityKingTurtle::new, MobCategory.MONSTER)
+            .sized(0.6F, 1.95F)
+            .eyeHeight(1.75F)
+            .build(ResourceLocation.fromNamespaceAndPath(LostFaithMod.MODID, "king_turtle").toString()));
 }

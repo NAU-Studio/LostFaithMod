@@ -20,6 +20,7 @@
   "entity.lostfaith.judas": "§b犹大§r",
   "entity.lostfaith.lost_turtle_guard": "走丢的老鳖卫士",
   "entity.lostfaith.royal_turtle_guard": "皇家老鳖卫士",
+  "entity.lostfaith.king_turtle": "老鳖国王",
 
   "message.lostfaith.silver_framed_gold_block.interaction_failed": "结构不正确！"
 }

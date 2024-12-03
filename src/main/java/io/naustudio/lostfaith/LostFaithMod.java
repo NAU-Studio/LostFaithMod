@@ -10,6 +10,7 @@ import io.naustudio.lostfaith.entity.turtle.judas.RendererJudas;
 import io.naustudio.lostfaith.entity.turtle.lost.EntityLostTurtleGuard;
 import io.naustudio.lostfaith.entity.turtle.ModelTurtle;
 import io.naustudio.lostfaith.entity.turtle.RendererTurtle;
+import io.naustudio.lostfaith.entity.turtle.royal.EntityKingTurtle;
 import io.naustudio.lostfaith.entity.turtle.royal.EntityRoyalTurtleGuard;
 import io.naustudio.lostfaith.item.LFItems;
 import io.naustudio.lostfaith.worldgen.structure_types.LFStructures;
@@ -113,6 +114,7 @@ public class LostFaithMod {
             event.registerEntityRenderer(LFEntities.Judas.get(), RendererJudas::new);
             event.registerEntityRenderer(LFEntities.LostTurtleGuard.get(), RendererTurtle::new);
             event.registerEntityRenderer(LFEntities.RoyalTurtleGuard.get(), RendererTurtle::new);
+            event.registerEntityRenderer(LFEntities.KingTurtle.get(), RendererTurtle::new);
         }
 
         @SubscribeEvent
@@ -120,6 +122,7 @@ public class LostFaithMod {
             event.put(LFEntities.Judas.get(), EntityJudas.CreateAttributes().build());
             event.put(LFEntities.LostTurtleGuard.get(), EntityLostTurtleGuard.CreateAttributes().build());
             event.put(LFEntities.RoyalTurtleGuard.get(), EntityRoyalTurtleGuard.CreateAttributes().build());
+            event.put(LFEntities.KingTurtle.get(), EntityKingTurtle.CreateAttributes().build());
         }
     }
 }

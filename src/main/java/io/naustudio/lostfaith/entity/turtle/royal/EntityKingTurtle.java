@@ -8,7 +8,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerBossEvent;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.Difficulty;
@@ -20,7 +19,7 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.EventHooks;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.UUID;
+import java.util.*;
 
 public class EntityKingTurtle extends ZombieBasedTurtle {
 
@@ -34,9 +33,7 @@ public class EntityKingTurtle extends ZombieBasedTurtle {
     public EntityQueenTurtle Queen;
     public UUID QueenUUID;
 
-    private float QueenMaxHealth;
-
-    private boolean ShouldSpawnQueen = true;
+    public boolean ShouldSpawnQueen = true;
 
     public EntityKingTurtle(EntityType<EntityKingTurtle> type, Level level) {
         super(type, level);
@@ -94,17 +91,7 @@ public class EntityKingTurtle extends ZombieBasedTurtle {
             ShouldSpawnQueen = false;
         }
 
-        if (Queen == null && QueenUUID != null)
-            Queen = (EntityQueenTurtle) ((ServerLevel)level()).getEntity(QueenUUID);
-
-        float queenHealth = 0;
-
-        if (Queen != null && Queen.isAlive()) {
-            queenHealth = Queen.getHealth();
-            QueenMaxHealth = Queen.getMaxHealth();
-        }
-
-        BossInfo.setProgress((getHealth() + queenHealth) / (getMaxHealth() + QueenMaxHealth));
+        BossInfo.setProgress(getHealth() / getMaxHealth());
     }
 
     public static AttributeSupplier.Builder CreateAttributes() {

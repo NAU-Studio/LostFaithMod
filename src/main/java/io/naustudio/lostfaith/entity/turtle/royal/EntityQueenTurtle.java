@@ -2,8 +2,11 @@ package io.naustudio.lostfaith.entity.turtle.royal;
 
 import io.naustudio.lostfaith.LostFaithMod;
 import io.naustudio.lostfaith.entity.turtle.ZombieBasedTurtle;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.BossEvent;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -17,6 +20,10 @@ public class EntityQueenTurtle extends ZombieBasedTurtle {
     private static final ResourceLocation texture
             = ResourceLocation.fromNamespaceAndPath(LostFaithMod.MODID, "textures/entity/queen_turtle.png");
 
+    private ServerBossEvent BossInfo
+            = new ServerBossEvent(Component.translatable("entity.lostfaith.queen_turtle"),
+            BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.PROGRESS);
+
     public EntityQueenTurtle(EntityType<EntityQueenTurtle> type, Level level) {
         super(type, level);
     }
@@ -24,16 +31,6 @@ public class EntityQueenTurtle extends ZombieBasedTurtle {
     @Override
     public ResourceLocation Texture() {
         return texture;
-    }
-
-    @Override
-    public void startSeenByPlayer(@NotNull ServerPlayer p) {
-        super.startSeenByPlayer(p);
-    }
-
-    @Override
-    public void stopSeenByPlayer(@NotNull ServerPlayer p) {
-        super.stopSeenByPlayer(p);
     }
 
     @Override
@@ -47,8 +44,21 @@ public class EntityQueenTurtle extends ZombieBasedTurtle {
     }
 
     @Override
+    public void startSeenByPlayer(@NotNull ServerPlayer p) {
+        super.startSeenByPlayer(p);
+        BossInfo.addPlayer(p);
+    }
+
+    @Override
+    public void stopSeenByPlayer(@NotNull ServerPlayer p) {
+        super.stopSeenByPlayer(p);
+        BossInfo.removePlayer(p);
+    }
+
+    @Override
     public void tick() {
         super.tick();
+        BossInfo.setProgress(getHealth() / getMaxHealth());
     }
 
     public static AttributeSupplier.Builder CreateAttributes() {

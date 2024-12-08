@@ -4,11 +4,13 @@ import io.naustudio.lostfaith.LostFaithMod;
 import io.naustudio.lostfaith.entity.turtle.judas.EntityJudas;
 import io.naustudio.lostfaith.entity.turtle.lost.EntityLostTurtleGuard;
 import io.naustudio.lostfaith.entity.turtle.royal.EntityKingTurtle;
+import io.naustudio.lostfaith.entity.turtle.royal.EntityQueenTurtle;
 import io.naustudio.lostfaith.entity.turtle.royal.EntityRoyalTurtleGuard;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -41,4 +43,12 @@ public class LFEntities {
             .sized(0.6F, 1.95F)
             .eyeHeight(1.75F)
             .build(ResourceLocation.fromNamespaceAndPath(LostFaithMod.MODID, "king_turtle").toString()));
+
+    public static final DeferredHolder<EntityType<?>, EntityType<EntityQueenTurtle>> QueenTurtle
+            = Registry.register("queen_turtle", () -> EntityType.Builder.of(
+                    (EntityType<EntityQueenTurtle> a, Level b) -> new EntityQueenTurtle(a, b, null),
+                    MobCategory.MONSTER)
+            .sized(0.6F, 1.95F)
+            .eyeHeight(1.75F)
+            .build(ResourceLocation.fromNamespaceAndPath(LostFaithMod.MODID, "queen_turtle").toString()));
 }

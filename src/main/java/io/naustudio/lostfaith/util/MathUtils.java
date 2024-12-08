@@ -19,6 +19,10 @@ public class MathUtils {
         return new BlockPos(left.getX() + right.getX(), left.getY() + right.getY(), left.getZ() + right.getZ());
     }
 
+    public static Vec3 Add(Vec3 left, Vec3 right) {
+        return new Vec3(left.x + right.x, left.y + right.y, left.z + right.z);
+    }
+
     public static Vec3 Sub(Vec3 left, Vec3 right) { // Why?
         return new Vec3(left.x - right.x, left.y - right.y, left.z - right.z);
     }

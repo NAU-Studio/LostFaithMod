@@ -21,6 +21,7 @@
   "entity.lostfaith.lost_turtle_guard": "Lost Turtle Guard",
   "entity.lostfaith.royal_turtle_guard": "Royal Turtle Guard",
   "entity.lostfaith.king_turtle": "§6King Turtle§r",
+  "entity.lostfaith.queen_turtle": "§6Queen Turtle§r",
   "entity.lostfaith.bossbar.turtle_monarch_couple": "§6Turtle Monarch Couple§r",
 
   "message.lostfaith.silver_framed_gold_block.interaction_failed": "Structure incorrect!"

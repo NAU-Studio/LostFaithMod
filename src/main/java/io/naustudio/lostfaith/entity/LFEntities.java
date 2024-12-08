@@ -45,9 +45,7 @@ public class LFEntities {
             .build(ResourceLocation.fromNamespaceAndPath(LostFaithMod.MODID, "king_turtle").toString()));
 
     public static final DeferredHolder<EntityType<?>, EntityType<EntityQueenTurtle>> QueenTurtle
-            = Registry.register("queen_turtle", () -> EntityType.Builder.of(
-                    (EntityType<EntityQueenTurtle> a, Level b) -> new EntityQueenTurtle(a, b, null),
-                    MobCategory.MONSTER)
+            = Registry.register("queen_turtle", () -> EntityType.Builder.of(EntityQueenTurtle::new, MobCategory.MONSTER)
             .sized(0.6F, 1.95F)
             .eyeHeight(1.75F)
             .build(ResourceLocation.fromNamespaceAndPath(LostFaithMod.MODID, "queen_turtle").toString()));

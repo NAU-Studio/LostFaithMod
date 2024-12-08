@@ -17,11 +17,8 @@ public class EntityQueenTurtle extends ZombieBasedTurtle {
     private static final ResourceLocation texture
             = ResourceLocation.fromNamespaceAndPath(LostFaithMod.MODID, "textures/entity/queen_turtle.png");
 
-    private EntityKingTurtle King;
-
-    public EntityQueenTurtle(EntityType<EntityQueenTurtle> type, Level level, EntityKingTurtle king) {
+    public EntityQueenTurtle(EntityType<EntityQueenTurtle> type, Level level) {
         super(type, level);
-        King = king;
     }
 
     @Override

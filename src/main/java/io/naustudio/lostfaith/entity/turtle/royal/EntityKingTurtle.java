@@ -7,7 +7,6 @@ import io.naustudio.lostfaith.util.MathUtils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.commands.TeleportCommand;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -16,9 +15,7 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.SpawnerBlock;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.EventHooks;
 import org.jetbrains.annotations.NotNull;
@@ -91,7 +88,7 @@ public class EntityKingTurtle extends ZombieBasedTurtle {
         super.tick();
 
         if (ShouldSpawnQueen) {
-            Queen = new EntityQueenTurtle(LFEntities.QueenTurtle.get(), level(), this);
+            Queen = new EntityQueenTurtle(LFEntities.QueenTurtle.get(), level());
             Queen.setPos(MathUtils.Add(position(), new Vec3(1, 0, 0)));
             level().addFreshEntity(Queen);
             ShouldSpawnQueen = false;

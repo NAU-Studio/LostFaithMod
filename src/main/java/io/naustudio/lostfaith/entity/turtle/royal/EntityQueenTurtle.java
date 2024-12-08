@@ -15,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 public class EntityQueenTurtle extends ZombieBasedTurtle {
 
     private static final ResourceLocation texture
-            = ResourceLocation.fromNamespaceAndPath(LostFaithMod.MODID, "textures/entity/king_turtle.png");
+            = ResourceLocation.fromNamespaceAndPath(LostFaithMod.MODID, "textures/entity/queen_turtle.png");
 
     private EntityKingTurtle King;
 

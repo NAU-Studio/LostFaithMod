@@ -1,7 +1,7 @@
 package io.naustudio.lostfaith.entity.turtle;
 
 import io.naustudio.lostfaith.LostFaithMod;
-import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -9,17 +9,20 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 
 @SuppressWarnings("unused")
-public class ModelTurtle extends HumanoidModel<ZombieBasedTurtle> {
+public class ModelTurtle extends PlayerModel<ZombieBasedTurtle> {
 
     public static final ModelLayerLocation LayerLocation
             = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(LostFaithMod.MODID, "turtle_model"), "main");
 
-    public ModelTurtle(ModelPart root) {
-        super(root);
+    public static final ModelLayerLocation SlimLayerLocation
+            = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(LostFaithMod.MODID, "slim_turtle_model"), "main");
+
+    public ModelTurtle(ModelPart root, boolean slim) {
+        super(root, slim);
     }
 
-    public static LayerDefinition createBodyLayer() {
-        MeshDefinition meshdefinition = HumanoidModel.createMesh(CubeDeformation.NONE, 0.0F);
+    public static LayerDefinition createBodyLayer(boolean slim) {
+        MeshDefinition meshdefinition = PlayerModel.createMesh(CubeDeformation.NONE, slim);
         PartDefinition partdefinition = meshdefinition.getRoot();
         CreateShell(partdefinition);
         return LayerDefinition.create(meshdefinition, 128, 64);

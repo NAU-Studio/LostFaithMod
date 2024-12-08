@@ -107,7 +107,8 @@ public class LostFaithMod {
         @SubscribeEvent
         public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
             event.registerLayerDefinition(ModelJudas.LayerLocation, ModelJudas::createBodyLayer);
-            event.registerLayerDefinition(ModelTurtle.LayerLocation, ModelTurtle::createBodyLayer);
+            event.registerLayerDefinition(ModelTurtle.LayerLocation, () -> ModelTurtle.createBodyLayer(false));
+            event.registerLayerDefinition(ModelTurtle.SlimLayerLocation, () -> ModelTurtle.createBodyLayer(true));
         }
 
         @SubscribeEvent
@@ -116,7 +117,7 @@ public class LostFaithMod {
             event.registerEntityRenderer(LFEntities.LostTurtleGuard.get(), RendererTurtle::new);
             event.registerEntityRenderer(LFEntities.RoyalTurtleGuard.get(), RendererTurtle::new);
             event.registerEntityRenderer(LFEntities.KingTurtle.get(), RendererTurtle::new);
-            event.registerEntityRenderer(LFEntities.QueenTurtle.get(), RendererTurtle::new);
+            event.registerEntityRenderer(LFEntities.QueenTurtle.get(), x -> new RendererTurtle(x, true));
         }
 
         @SubscribeEvent

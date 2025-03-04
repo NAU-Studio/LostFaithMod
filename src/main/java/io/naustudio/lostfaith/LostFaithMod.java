@@ -4,13 +4,17 @@ import com.mojang.logging.LogUtils;
 import io.naustudio.lostfaith.block.LFBlocks;
 import io.naustudio.lostfaith.component.LFComponents;
 import io.naustudio.lostfaith.entity.LFEntities;
-import io.naustudio.lostfaith.entity.judas.EntityJudas;
-import io.naustudio.lostfaith.entity.judas.ModelJudas;
-import io.naustudio.lostfaith.entity.judas.RendererJudas;
-import io.naustudio.lostfaith.entity.turtle_guard.lost.EntityLostTurtleGuard;
-import io.naustudio.lostfaith.entity.turtle_guard.lost.ModelLostTurtleGuard;
-import io.naustudio.lostfaith.entity.turtle_guard.lost.RendererLostTurtleGuard;
+import io.naustudio.lostfaith.entity.turtle.judas.EntityJudas;
+import io.naustudio.lostfaith.entity.turtle.judas.ModelJudas;
+import io.naustudio.lostfaith.entity.turtle.judas.RendererJudas;
+import io.naustudio.lostfaith.entity.turtle.lost.EntityLostTurtleGuard;
+import io.naustudio.lostfaith.entity.turtle.ModelTurtle;
+import io.naustudio.lostfaith.entity.turtle.RendererTurtle;
+import io.naustudio.lostfaith.entity.turtle.royal.EntityKingTurtle;
+import io.naustudio.lostfaith.entity.turtle.royal.EntityQueenTurtle;
+import io.naustudio.lostfaith.entity.turtle.royal.EntityRoyalTurtleGuard;
 import io.naustudio.lostfaith.item.LFItems;
+import io.naustudio.lostfaith.worldgen.structure_types.LFStructures;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -22,7 +26,6 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -53,12 +56,13 @@ public class LostFaithMod {
                     .icon(() -> new ItemStack(LFItems.Crucifix.get()))
                     .title(Component.translatable("item_group.lostfaith_main")).build());
 
-    public LostFaithMod(IEventBus modEventBus, ModContainer container) {
+    public LostFaithMod(IEventBus modEventBus) {
         LFBlocks.Registry.register(modEventBus);
         LFItems.Registry.register(modEventBus);
         LFEntities.Registry.register(modEventBus);
         TABS.register(modEventBus);
         LFComponents.Registry.register(modEventBus);
+        LFStructures.Registry.register(modEventBus);
 
         modEventBus.register(this);
     }
@@ -70,8 +74,7 @@ public class LostFaithMod {
             for (Field field : fields) {
                 if (field.getType() == DeferredItem.class && Modifier.isPublic(field.getModifiers())) {
                     try {
-                        event.accept((DeferredItem<? extends Item>)field.get(null));
-                        LOGGER.debug("Registered {}", field.getName());
+                        event.accept((DeferredItem<? extends Item>) field.get(null));
                     } catch (IllegalAccessException ex) {
                         LOGGER.error(ex.getMessage());
                     }
@@ -104,19 +107,26 @@ public class LostFaithMod {
         @SubscribeEvent
         public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
             event.registerLayerDefinition(ModelJudas.LayerLocation, ModelJudas::createBodyLayer);
-            event.registerLayerDefinition(ModelLostTurtleGuard.LayerLocation, ModelLostTurtleGuard::createBodyLayer);
+            event.registerLayerDefinition(ModelTurtle.LayerLocation, () -> ModelTurtle.createBodyLayer(false));
+            event.registerLayerDefinition(ModelTurtle.SlimLayerLocation, () -> ModelTurtle.createBodyLayer(true));
         }
 
         @SubscribeEvent
         public static void onRegisterRenderer(EntityRenderersEvent.RegisterRenderers event) {
             event.registerEntityRenderer(LFEntities.Judas.get(), RendererJudas::new);
-            event.registerEntityRenderer(LFEntities.LostTurtleGuard.get(), RendererLostTurtleGuard::new);
+            event.registerEntityRenderer(LFEntities.LostTurtleGuard.get(), RendererTurtle::new);
+            event.registerEntityRenderer(LFEntities.RoyalTurtleGuard.get(), RendererTurtle::new);
+            event.registerEntityRenderer(LFEntities.KingTurtle.get(), RendererTurtle::new);
+            event.registerEntityRenderer(LFEntities.QueenTurtle.get(), x -> new RendererTurtle(x, true));
         }
 
         @SubscribeEvent
         public static void onAttributeCreate(EntityAttributeCreationEvent event) {
             event.put(LFEntities.Judas.get(), EntityJudas.CreateAttributes().build());
             event.put(LFEntities.LostTurtleGuard.get(), EntityLostTurtleGuard.CreateAttributes().build());
+            event.put(LFEntities.RoyalTurtleGuard.get(), EntityRoyalTurtleGuard.CreateAttributes().build());
+            event.put(LFEntities.KingTurtle.get(), EntityKingTurtle.CreateAttributes().build());
+            event.put(LFEntities.QueenTurtle.get(), EntityQueenTurtle.CreateAttributes().build());
         }
     }
 }

@@ -1,4 +1,4 @@
-package io.naustudio.lostfaith.entity.judas;
+package io.naustudio.lostfaith.entity.turtle.judas;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -11,12 +11,12 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.HumanoidArm;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 @OnlyIn(Dist.CLIENT)
+@SuppressWarnings("unused")
 public class ModelJudas extends EntityModel<EntityJudas> {
 
     public static final ModelLayerLocation LayerLocation
@@ -103,17 +103,17 @@ public class ModelJudas extends EntityModel<EntityJudas> {
     }
 
     @Override
-    public void setupAnim(EntityJudas entity, float limbSwing, float limbSwingAmount, float age, float headYaw, float headPitch) {
-        Head.xRot = MathUtils.ToRad(headPitch);
-        Head.yRot = MathUtils.ToRad(headYaw);
+    public void setupAnim(EntityJudas entity, float swing, float swingAmount, float age, float yaw, float pitch) {
+        Head.xRot = MathUtils.ToRad(pitch);
+        Head.yRot = MathUtils.ToRad(yaw);
 
         float scale = (float)entity.getDeltaMovement().lengthSqr() / 0.2f;
         scale *= scale * scale;
         if (scale < 1)
             scale = 1;
 
-        float swingA = Mth.sin(limbSwing / 1.1f) * limbSwingAmount * scale;
-        float swingB = Mth.sin(limbSwing / 1.1f + MathUtils.Pi) * limbSwingAmount * scale;
+        float swingA = Mth.sin(swing / 1.1f) * swingAmount * scale;
+        float swingB = Mth.sin(swing / 1.1f + MathUtils.Pi) * swingAmount * scale;
         float swingShell = Mth.cos(age / 8);
 
         LeftArm.xRot = swingB;
@@ -133,12 +133,12 @@ public class ModelJudas extends EntityModel<EntityJudas> {
     }
 
     @Override
-    public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int color) {
-        Body.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
-        RightLeg.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
-        LeftLeg.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
-        LeftArm.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
-        RightArm.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
-        Head.render(poseStack, vertexConsumer, packedLight, packedOverlay, color);
+    public void renderToBuffer(@NotNull PoseStack matrix, @NotNull VertexConsumer vc, int light, int overlay, int color) {
+        Body.render(matrix, vc, light, overlay, color);
+        RightLeg.render(matrix, vc, light, overlay, color);
+        LeftLeg.render(matrix, vc, light, overlay, color);
+        LeftArm.render(matrix, vc, light, overlay, color);
+        RightArm.render(matrix, vc, light, overlay, color);
+        Head.render(matrix, vc, light, overlay, color);
     }
 }

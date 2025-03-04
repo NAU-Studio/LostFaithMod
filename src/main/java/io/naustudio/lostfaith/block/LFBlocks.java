@@ -10,6 +10,7 @@ import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+@SuppressWarnings("unused")
 public class LFBlocks {
 
     public static final DeferredRegister.Blocks Registry = DeferredRegister.createBlocks(LostFaithMod.MODID);

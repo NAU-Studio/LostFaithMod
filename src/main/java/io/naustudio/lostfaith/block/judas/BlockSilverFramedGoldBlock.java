@@ -30,11 +30,15 @@ public class BlockSilverFramedGoldBlock extends MultiBlockStructureCore {
     }
 
     @Override
-    protected void onTestSuccessful(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+    protected void onTestFail(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        super.onTestFail(state, level, pos, player, hitResult);
+    }
+
+    @Override
+    protected void onTestSuccess(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         EntityJudas judas = LFEntities.Judas.get().create(level);
-        if (judas != null) {
+        if (judas != null)
             judas.setPos(pos.below(-1).getBottomCenter());
-        }
         level.addFreshEntity(judas);
     }
 

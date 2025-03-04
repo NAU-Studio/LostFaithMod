@@ -48,7 +48,7 @@ public abstract class MultiBlockStructureCore extends Block {
         }
         if (Ok)
         {
-            onTestSuccessful(state, level, pos, player, hitResult);
+            onTestSuccess(state, level, pos, player, hitResult);
             e = Blocks.keys();
             while (e.hasMoreElements()) {
                 BlockPos p = e.nextElement();
@@ -59,16 +59,21 @@ public abstract class MultiBlockStructureCore extends Block {
             level.destroyBlock(pos, false);
             return InteractionResult.SUCCESS;
         }
-        Component testFailedMsg = getTestFailedMessage();
-        if (testFailedMsg != null) {
-            player.sendSystemMessage(getTestFailedMessage());
-        }
+        onTestFail(state, level, pos, player, hitResult);
+
         return InteractionResult.FAIL;
+    }
+
+    protected void onTestFail(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult)
+    {
+        Component testFailedMsg = getTestFailedMessage();
+        if (testFailedMsg != null)
+            player.sendSystemMessage(testFailedMsg);
     }
 
     protected Component getTestFailedMessage() { return null; }
 
-    protected void onTestSuccessful(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) { }
+    protected void onTestSuccess(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) { }
 
     protected boolean Is(Block block, Level level, BlockPos pos) {
         return level.getBlockState(pos).getBlock() == block;

@@ -3,7 +3,6 @@ package io.naustudio.lostfaith.item;
 import io.naustudio.lostfaith.LostFaithMod;
 import io.naustudio.lostfaith.block.LFBlocks;
 import io.naustudio.lostfaith.entity.LFEntities;
-import io.naustudio.lostfaith.item.mission.ItemBibleNewTesta;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SpawnEggItem;
@@ -26,9 +25,6 @@ public class LFItems {
 
     public static final DeferredItem<ItemBibleOldTesta> BibleOldTesta
             = Registry.register("bible_old_testa", () -> new ItemBibleOldTesta(new Item.Properties()));
-
-    public static final DeferredItem<ItemBibleNewTesta> BibleNewTesta
-            = Registry.register("bible_new_testa", () -> new ItemBibleNewTesta(new Item.Properties()));
 
     public static final DeferredItem<BlockItem> RomaSilverCoin
             = Registry.register("roma_silver_coin", () -> new BlockItem(LFBlocks.SilverCoinStack.get(), new Item.Properties()));

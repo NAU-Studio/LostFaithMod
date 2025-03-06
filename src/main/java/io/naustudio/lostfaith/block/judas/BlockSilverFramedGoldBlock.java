@@ -1,56 +1,104 @@
 package io.naustudio.lostfaith.block.judas;
 
 import io.naustudio.lostfaith.block.LFBlocks;
-import io.naustudio.lostfaith.block.structure.MultiBlockStructureCore;
 import io.naustudio.lostfaith.entity.LFEntities;
-import io.naustudio.lostfaith.entity.turtle.judas.EntityJudas;
+import io.naustudio.lostfaith.util.MathUtils;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.Nullable;
 
-public class BlockSilverFramedGoldBlock extends MultiBlockStructureCore {
+import java.util.*;
+
+public class BlockSilverFramedGoldBlock extends Block implements EntityBlock {
 
     public BlockSilverFramedGoldBlock(Properties properties) {
         super(properties);
     }
 
+    @Nullable
     @Override
-    protected void initStructure() {
-        Ingredients.put('@', LFBlocks.SilverCoinStack.get());
-        Blocks.put(new BlockPos(-2, 0, 2), '@');
-        Blocks.put(new BlockPos(-2, 0, 0), '@');
-        Blocks.put(new BlockPos(-2, 0, -2), '@');
-        Blocks.put(new BlockPos(2, 0, 2), '@');
-        Blocks.put(new BlockPos(2, 0, 0), '@');
-        Blocks.put(new BlockPos(2, 0, -2), '@');
+    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return LFEntities.SilverFramedGoldBlock.get().create(blockPos, blockState);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    protected void onTestFail(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        super.onTestFail(state, level, pos, player, hitResult);
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
+        return type == LFEntities.SilverFramedGoldBlock.get() ? SilverFramedGoldBlockEntity::Tick : null;
     }
 
-    @Override
-    protected void onTestSuccess(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
-        EntityJudas judas = LFEntities.Judas.get().create(level);
-        if (judas != null)
-            judas.setPos(pos.below(-1).getBottomCenter());
-        level.addFreshEntity(judas);
-    }
+    private static final BlockPos[] intersections = {
+            new BlockPos(2, 0, 2),
+            new BlockPos(2, 0, -2),
+            new BlockPos(-2, 0, 2),
+            new BlockPos(-2, 0, -2)
+    };
+    private static final BlockPos[] xPositions = {
+            new BlockPos(0, 0, 2),
+            new BlockPos(0, 0, -2)
+    };
+    private static final BlockPos[] zPositions = {
+            new BlockPos(2, 0, 0),
+            new BlockPos(-2, 0, 0)
+    };
 
-    @Override
-    protected boolean Is(Block block, Level level, BlockPos pos) {
-        BlockState state = level.getBlockState(pos);
-        return super.Is(block, level, pos) ||
-                (state.getBlock() == LFBlocks.SilverCoinStack.get() && level.getBlockState(pos).getValue(BlockRomaSilverCoinStack.Count) == 4);
-    }
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        SilverFramedGoldBlockEntity e = level.getBlockEntity(pos, LFEntities.SilverFramedGoldBlock.get()).get();
+        if (e.Progress >= 0)
+            return InteractionResult.FAIL;
 
-    @Override
-    protected Component getTestFailedMessage() {
-        return Component.translatable("message.lostfaith.silver_framed_gold_block.interaction_failed");
+        boolean interSuccess = true, xSuccess = true, zSuccess = true;
+        List<BlockPos> coins = new ArrayList<>();
+        for (BlockPos p : intersections) {
+            BlockPos ap = MathUtils.Add(pos, p);
+            BlockState s = level.getBlockState(ap);
+            if (s.getBlock() != LFBlocks.SilverCoinStack.get()) {
+                interSuccess = false;
+                continue;
+            }
+            else if (s.getValue(BlockRomaSilverCoinStack.Count) != 4) {
+                interSuccess = false;
+            }
+            coins.add(ap);
+        }
+
+        for (BlockPos p : xPositions) {
+            BlockPos ap = MathUtils.Add(pos, p);
+            BlockState s = level.getBlockState(ap);
+            if (s.getBlock() != LFBlocks.SilverCoinStack.get()) {
+                xSuccess = false;
+                continue;
+            }
+            else if (s.getValue(BlockRomaSilverCoinStack.Count) != 4) {
+                xSuccess = false;
+            }
+            coins.add(ap);
+        }
+        for (BlockPos p : zPositions) {
+            BlockPos ap = MathUtils.Add(pos, p);
+            BlockState s = level.getBlockState(ap);
+            if (s.getBlock() != LFBlocks.SilverCoinStack.get()) {
+                zSuccess = false;
+                continue;
+            }
+            else if (s.getValue(BlockRomaSilverCoinStack.Count) != 4) {
+                zSuccess = false;
+            }
+            coins.add(ap);
+        }
+
+        e.Coins = coins;
+        e.Succeed = interSuccess && (xSuccess || zSuccess);
+        e.Progress = 0;
+        return InteractionResult.SUCCESS;
     }
 }

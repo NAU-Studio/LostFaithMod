@@ -60,6 +60,7 @@ public class LostFaithMod {
         LFBlocks.Registry.register(modEventBus);
         LFItems.Registry.register(modEventBus);
         LFEntities.Registry.register(modEventBus);
+        LFEntities.BlockEntityRegistry.register(modEventBus);
         TABS.register(modEventBus);
         LFComponents.Registry.register(modEventBus);
         LFStructures.Registry.register(modEventBus);

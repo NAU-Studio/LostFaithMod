@@ -64,6 +64,11 @@ public class EntityJudas extends Monster {
     private boolean flameEnabled = false;
 
     @Override
+    public boolean fireImmune() {
+        return true;
+    }
+
+    @Override
     public void tick() {
         super.tick();
         BossInfo.setProgress(getHealth() / getMaxHealth());

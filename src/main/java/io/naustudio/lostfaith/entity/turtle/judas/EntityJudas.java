@@ -2,6 +2,8 @@ package io.naustudio.lostfaith.entity.turtle.judas;
 
 import io.naustudio.lostfaith.entity.DivineFireball;
 import io.naustudio.lostfaith.util.MathUtils;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.BossEvent;
@@ -38,17 +40,7 @@ public class EntityJudas extends Monster {
 
     @Override
     protected void registerGoals() {
-        goalSelector.addGoal(0, new FloatGoal(this));
-        goalSelector.addGoal(2, new MeleeAttackGoal(this, 1, false));
-        goalSelector.addGoal(6, new MoveThroughVillageGoal(this, 1, false, 4, () -> true));
-        goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1));
         goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
-        goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-        targetSelector.addGoal(1, new HurtByTargetGoal(this));
-        targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
-        targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
-        targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
-        targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Cat.class, true));
     }
 
     public static AttributeSupplier.Builder CreateAttributes() {
@@ -64,13 +56,62 @@ public class EntityJudas extends Monster {
     private boolean flameEnabled = false;
 
     @Override
+    public boolean fireImmune() {
+        return true;
+    }
+
+    @Override
+    public boolean attackable() {
+        return started;
+    }
+
+    private int storyboardTick = 0;
+
+    @Override
     public void tick() {
         super.tick();
+
+        if (level() instanceof ClientLevel)
+            return;
+
+        storyboardTick++;
+
+        switch (storyboardTick)
+        {
+            case 40: Say("message.lostfaith.judas.judas.0", "message.lostfaith.sender.judas"); break;
+            case 100: Say("message.lostfaith.judas.player.0", "message.lostfaith.sender.player"); break;
+            case 160: Say("message.lostfaith.judas.judas.1", "message.lostfaith.sender.judas"); break;
+            case 200: StartBattle(); break;
+        }
+
         BossInfo.setProgress(getHealth() / getMaxHealth());
         if (getHealth() < 200 && !flameEnabled) {
             flameEnabled = true;
             goalSelector.addGoal(7, new ShootFlameGoal(this));
         }
+    }
+
+    private boolean started = false;
+
+    private void StartBattle()
+    {
+        started = true;
+        goalSelector.addGoal(0, new FloatGoal(this));
+        goalSelector.addGoal(2, new MeleeAttackGoal(this, 1, false));
+        goalSelector.addGoal(6, new MoveThroughVillageGoal(this, 1, false, 4, () -> true));
+        goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1));
+        goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+        targetSelector.addGoal(1, new HurtByTargetGoal(this));
+        targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
+        targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillager.class, false));
+        targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
+        targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Cat.class, true));
+    }
+
+    private void Say(String msgTranslatable, String senderTranslatable)
+    {
+        for (var p : level().players())
+            p.sendSystemMessage(Component.translatable("message.lostfaith.format", Component.translatable(senderTranslatable), Component.translatable(msgTranslatable)));
     }
 
     @Override
@@ -94,7 +135,6 @@ public class EntityJudas extends Monster {
                 noActionTime = 0;
         }
     }
-
 
     static class ShootFlameGoal extends Goal {
         private final EntityJudas Entity;

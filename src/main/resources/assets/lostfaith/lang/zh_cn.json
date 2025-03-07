@@ -24,5 +24,10 @@
   "entity.lostfaith.queen_turtle": "§6老鳖公主§r",
   "entity.lostfaith.bossbar.turtle_monarch_couple": "§6老鳖夫妇§r",
 
-  "message.lostfaith.silver_framed_gold_block.interaction_failed": "结构不正确！"
+  "message.lostfaith.judas.judas.0": "负责处理集团财务的为了30银币而背叛很可笑对么？",
+  "message.lostfaith.judas.player.0": "你这家伙如今还在祸乱人间，你该回到地狱！",
+  "message.lostfaith.judas.judas.1": "可我已经忏悔了，主没有保佑我。",
+  "message.lostfaith.format": "%s §7>>§r %s",
+  "message.lostfaith.sender.judas": "§b犹大§r",
+  "message.lostfaith.sender.player": "§ePLAYERNAME§r"
 }

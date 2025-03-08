@@ -13,6 +13,7 @@ import io.naustudio.lostfaith.entity.turtle.RendererTurtle;
 import io.naustudio.lostfaith.entity.turtle.royal.EntityKingTurtle;
 import io.naustudio.lostfaith.entity.turtle.royal.EntityQueenTurtle;
 import io.naustudio.lostfaith.entity.turtle.royal.EntityRoyalTurtleGuard;
+import io.naustudio.lostfaith.gui.BetterBossBar;
 import io.naustudio.lostfaith.item.LFItems;
 import io.naustudio.lostfaith.worldgen.structure_types.LFStructures;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -25,12 +26,15 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.CustomizeGuiOverlayEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RenderGuiEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
@@ -56,6 +60,8 @@ public class LostFaithMod {
             CreativeModeTab.builder()
                     .icon(() -> new ItemStack(LFItems.Crucifix.get()))
                     .title(Component.translatable("item_group.lostfaith_main")).build());
+
+    public static final BetterBossBar BossBarOverlay = new BetterBossBar();
 
     public LostFaithMod(IEventBus modEventBus) {
         LFBlocks.Registry.register(modEventBus);
@@ -94,11 +100,22 @@ public class LostFaithMod {
                 RegisterSpawnPlacementsEvent.Operation.REPLACE);
     }
 
+
+
     static ResourceLocation res = ResourceLocation.fromNamespaceAndPath(MODID, "blocking");
 
-    @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents
-    {
+    @EventBusSubscriber(value = Dist.CLIENT)
+    public static class ClientEvents {
+
+        @SubscribeEvent
+        public static void onRenderGuiOverlay(RenderGuiEvent.Post e) {
+            BossBarOverlay.Render(e.getGuiGraphics(), e.getPartialTick());
+        }
+    }
+
+    @EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    public static class ClientModEvents {
+
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)  {
             event.enqueueWork(

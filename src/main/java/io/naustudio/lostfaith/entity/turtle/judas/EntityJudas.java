@@ -1,12 +1,12 @@
 package io.naustudio.lostfaith.entity.turtle.judas;
 
+import io.naustudio.lostfaith.LostFaithMod;
 import io.naustudio.lostfaith.entity.DivineFireball;
+import io.naustudio.lostfaith.entity.INewHealthSystem;
 import io.naustudio.lostfaith.util.MathUtils;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.BossEvent;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -26,13 +26,7 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.EventHooks;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-
-public class EntityJudas extends Monster {
-
-    final ServerBossEvent BossInfo
-            = (ServerBossEvent) new ServerBossEvent(Objects.requireNonNull(getDisplayName()),
-            BossEvent.BossBarColor.BLUE, BossEvent.BossBarOverlay.PROGRESS).setDarkenScreen(true);
+public class EntityJudas extends Monster implements INewHealthSystem {
 
     public EntityJudas(EntityType<EntityJudas> type, Level level) {
         super(type, level);
@@ -76,15 +70,13 @@ public class EntityJudas extends Monster {
 
         storyboardTick++;
 
-        switch (storyboardTick)
-        {
+        switch (storyboardTick) {
             case 40: Say("message.lostfaith.judas.judas.0", "message.lostfaith.sender.judas"); break;
             case 100: Say("message.lostfaith.judas.player.0", "message.lostfaith.sender.player"); break;
             case 160: Say("message.lostfaith.judas.judas.1", "message.lostfaith.sender.judas"); break;
             case 200: StartBattle(); break;
         }
 
-        BossInfo.setProgress(getHealth() / getMaxHealth());
         if (getHealth() < 200 && !flameEnabled) {
             flameEnabled = true;
             goalSelector.addGoal(7, new ShootFlameGoal(this));
@@ -93,8 +85,7 @@ public class EntityJudas extends Monster {
 
     private boolean started = false;
 
-    private void StartBattle()
-    {
+    private void StartBattle() {
         started = true;
         goalSelector.addGoal(0, new FloatGoal(this));
         goalSelector.addGoal(2, new MeleeAttackGoal(this, 1, false));
@@ -108,8 +99,7 @@ public class EntityJudas extends Monster {
         targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Cat.class, true));
     }
 
-    private void Say(String msgTranslatable, String senderTranslatable)
-    {
+    private void Say(String msgTranslatable, String senderTranslatable) {
         for (var p : level().players())
             p.sendSystemMessage(Component.translatable("message.lostfaith.format", Component.translatable(senderTranslatable), Component.translatable(msgTranslatable)));
     }
@@ -117,13 +107,13 @@ public class EntityJudas extends Monster {
     @Override
     public void startSeenByPlayer(@NotNull ServerPlayer p) {
         super.startSeenByPlayer(p);
-        BossInfo.addPlayer(p);
+        LostFaithMod.BossBarOverlay.TrackEntity(this);
     }
 
     @Override
     public void stopSeenByPlayer(@NotNull ServerPlayer p) {
         super.stopSeenByPlayer(p);
-        BossInfo.removePlayer(p);
+        LostFaithMod.BossBarOverlay.Untrack();
     }
 
     @Override
@@ -134,6 +124,26 @@ public class EntityJudas extends Monster {
             else
                 noActionTime = 0;
         }
+    }
+
+    @Override
+    public float GetHealth() {
+        return getHealth();
+    }
+
+    @Override
+    public float GetMaxHealth() {
+        return getMaxHealth();
+    }
+
+    @Override
+    public float GetShield() {
+        return 0;
+    }
+
+    @Override
+    public float GetStageCount() {
+        return 1;
     }
 
     static class ShootFlameGoal extends Goal {

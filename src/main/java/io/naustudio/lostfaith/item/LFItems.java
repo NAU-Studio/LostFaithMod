@@ -43,4 +43,8 @@ public class LFItems {
     public static final DeferredItem<SpawnEggItem> KingTurtleSpawnEgg
             = Registry.register("king_turtle_spawn_egg", () ->
             new SpawnEggItem(LFEntities.KingTurtle.get(), 0x5D8712, 0xFFED00, new Item.Properties()));
+
+    public static final DeferredItem<CrystalBallItem> CrystalBall
+            = Registry.register("crystal_ball", () ->
+            new CrystalBallItem(new Item.Properties()));
 }

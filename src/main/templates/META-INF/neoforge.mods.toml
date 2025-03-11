@@ -44,7 +44,9 @@ displayName="${mod_name}" #mandatory
 authors="${mod_authors}" #optional
 
 # The description text for the mod (multi line!) (#mandatory)
-description='''曾经洁白的信仰却与污秽的怪物同流合污，往日的罪人竟登上大雅之堂。当神明背叛，唯有人能救自己……
+description='''此模组已更改世界观和剧情方向，以下内容为备份
+
+曾经洁白的信仰却与污秽的怪物同流合污，往日的罪人竟登上大雅之堂。当神明背叛，唯有人能救自己……
 The once faith is in tandem with the monsters. The sinners of the past have ascended to the hall of elegance. When the gods betray, only humans can save themselves...
 
 本模组包含大量世界历史文化，有英雄与优秀文化；同时也有恶人与糟粕。你要做的就是在圣人与先人的指导下，杀死这些与玩家对立的怪物。

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "@": [
+      {
+        "item": "lostland:roma_silver_coin"
+      }
+    ],
+    "#": [
+      {
+        "item": "minecraft:gold_block"
+      }
+    ]
+  },
+  "pattern": [
+    " @@",
+    "@#@",
+    "@@ "
+  ],
+  "result": {
+    "id": "lostland:silver_framed_gold_block"
+  }
+}

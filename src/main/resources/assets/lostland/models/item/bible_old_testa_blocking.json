@@ -1,5 +1,5 @@
 {
-	"parent": "lostfaith:item/bible_old_testa",
+	"parent": "lostland:item/bible_old_testa",
 	"display": {
 		"thirdperson_righthand": {
 			"rotation": [45, 155, 0],

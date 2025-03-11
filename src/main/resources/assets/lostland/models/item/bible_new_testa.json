@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "lostfaith:item/bible_new_testa"
+    "layer0": "lostland:item/bible_new_testa"
   }
 }

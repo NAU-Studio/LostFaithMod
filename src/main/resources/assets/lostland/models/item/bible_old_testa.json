@@ -1,6 +1,6 @@
 {
 	"textures": {
-		"0": "lostfaith:item/bible_old_testa"
+		"0": "lostland:item/bible_old_testa"
 	},
 	"elements": [
 		{
@@ -87,7 +87,7 @@
 			"predicate": {
 				"lostfaith:blocking": 1
 			},
-			"model": "lostfaith:item/bible_old_testa_blocking"
+			"model": "lostland:item/bible_old_testa_blocking"
 		}
 	]
 }

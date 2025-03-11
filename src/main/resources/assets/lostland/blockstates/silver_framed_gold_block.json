@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "lostfaith:block/silver_framed_gold_block"
+      "model": "lostland:block/silver_framed_gold_block"
     }
   }
 }

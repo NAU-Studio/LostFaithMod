@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "lostfaith:item/roma_silver_coin"
+    "layer0": "lostland:item/roma_silver_coin"
   }
 }

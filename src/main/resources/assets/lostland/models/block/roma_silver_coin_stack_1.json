@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"0": "lostfaith:block/roma_silver_coin_stack",
-		"particle": "lostfaith:item/roma_silver_coin"
+		"0": "lostland:block/roma_silver_coin_stack",
+		"particle": "lostland:item/roma_silver_coin"
 	},
 	"elements": [
 		{

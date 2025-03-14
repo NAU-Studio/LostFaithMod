@@ -29,5 +29,9 @@
   "message.lostfaith.judas.judas.1": "可我已经忏悔了，主没有保佑我。",
   "message.lostfaith.format": "%s §7>>§r %s",
   "message.lostfaith.sender.judas": "§b犹大§r",
-  "message.lostfaith.sender.player": "§ePLAYERNAME§r"
+  "message.lostfaith.sender.player": "§ePLAYERNAME§r",
+  "scn.lostfaith.beginning.0": "此模组与大部分模组都有玩法冲突，在安装其他模组后建议不要游玩此模组。",
+  "scn.lostfaith.beginning.1": "接下来3秒内，你可以按下Esc退出。",
+  "scn.lostfaith.beginning.2": "接下来2秒内，你可以按下Esc退出。",
+  "scn.lostfaith.beginning.3": "接下来1秒内，你可以按下Esc退出。"
 }

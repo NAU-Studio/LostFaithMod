@@ -28,9 +28,9 @@ public class CrystalBallItem extends Item {
         BeginningStory.add(new ChangeEscapeItem(0, true));
 
         BeginningStory.add(new StoryTextItem(
-                0,
+                10,
                 80,
-                20,
+                10,
                 Component.translatable("scn.lostfaith.beginning.0"),
                 new Vector2f(0.5f, 0.5f),
                 new Vector2f(0, 0),
@@ -39,20 +39,43 @@ public class CrystalBallItem extends Item {
                 255,
                 255));
 
-        BeginningStory.add(new ChangeEscapeItem(50, false));
-
         BeginningStory.add(new StoryTextItem(
-                50,
-                80,
-                40,
+                30,
+                20,
+                0,
                 Component.translatable("scn.lostfaith.beginning.1"),
                 new Vector2f(0.5f, 0.5f),
-                new Vector2f(64, 16),
+                new Vector2f(0, 12),
                 new Vector2f(0.5f, 0.5f),
-                0,
+                255,
                 255,
                 255));
 
+        BeginningStory.add(new StoryTextItem(
+                50,
+                20,
+                0,
+                Component.translatable("scn.lostfaith.beginning.2"),
+                new Vector2f(0.5f, 0.5f),
+                new Vector2f(0, 12),
+                new Vector2f(0.5f, 0.5f),
+                255,
+                255,
+                255));
+
+        BeginningStory.add(new StoryTextItem(
+                70,
+                20,
+                0,
+                Component.translatable("scn.lostfaith.beginning.3"),
+                new Vector2f(0.5f, 0.5f),
+                new Vector2f(0, 12),
+                new Vector2f(0.5f, 0.5f),
+                255,
+                255,
+                255));
+
+        BeginningStory.add(new ChangeEscapeItem(10, false));
     }
 
     @Override

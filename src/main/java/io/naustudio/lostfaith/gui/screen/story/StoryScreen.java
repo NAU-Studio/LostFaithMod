@@ -61,9 +61,17 @@ public class StoryScreen extends Screen {
     private List<StoryText> _removingText = new ArrayList<>();
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+    public boolean isPauseScreen() {
+        return false;
+    }
+
+    @Override
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float fakePartialTick) {
+        float partialTick = minecraft.getTimer().getRealtimeDeltaTicks(); // fuck you partialTick
+
         renderBackground(guiGraphics, mouseX, mouseY, partialTick);
         _currentTween.Update(partialTick);
+
         if (Tween.IsDead(_currentTween)) {
             if (_closing) {
                 minecraft.popGuiLayer();
@@ -72,6 +80,9 @@ public class StoryScreen extends Screen {
             else
                 _time += partialTick;
         }
+
+        if (_closing)
+            return;
 
         for (var i : Data) {
             if (_time >= i.Tick) {

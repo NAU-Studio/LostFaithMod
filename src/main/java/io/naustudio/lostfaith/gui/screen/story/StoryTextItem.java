@@ -3,17 +3,18 @@ package io.naustudio.lostfaith.gui.screen.story;
 import net.minecraft.network.chat.Component;
 import org.joml.Vector2f;
 
-public class StoryData {
+public class StoryTextItem extends StoryItem {
 
     public Component Text;
     public Vector2f Anchor;
     public Vector2f Position, Pivot;
     public int R, G, B;
-    public float Transition;
-    public float ShowTick, Duration;
+    public float Duration, Transition;
 
-    public StoryData(Component text, Vector2f anchor, Vector2f posiiton, Vector2f pivot, int r, int g, int b,
-                     float showTick, float duration, float transition) {
+    public StoryTextItem(float tick, float duration, float transition, Component text,
+                         Vector2f anchor, Vector2f posiiton, Vector2f pivot,
+                         int r, int g, int b) {
+        super(tick);
         Text = text;
         Anchor = anchor;
         Position = posiiton;
@@ -21,8 +22,12 @@ public class StoryData {
         R = r;
         G = g;
         B = b;
-        ShowTick = showTick;
         Duration = duration;
         Transition = transition;
+    }
+
+    @Override
+    public void Invoke(StoryScreen screen) {
+        screen.CreateText(this);
     }
 }

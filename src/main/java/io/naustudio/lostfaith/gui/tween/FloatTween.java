@@ -13,6 +13,6 @@ public abstract class FloatTween extends Tween<Float> {
 
     @Override
     protected Float Interpolate(Float a, Float b, float t) {
-        return Mth.clampedLerp(t, a, b);
+        return Mth.clampedLerp(a, b, t);
     }
 }

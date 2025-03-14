@@ -18,11 +18,11 @@ import java.util.List;
 @OnlyIn(Dist.CLIENT)
 public class StoryScreen extends Screen {
 
-    public List<StoryData> Data;
+    public List<StoryItem> Data;
 
     private float ShowTransition;
 
-    public StoryScreen(List<StoryData> data, float showTransition) {
+    public StoryScreen(List<StoryItem> data, float showTransition) {
         super(Component.empty());
         ShowTransition = showTransition;
         _currentTween = new LinearFloatTween(() -> (float)_backgroundAlpha, x -> _backgroundAlpha = Math.round(x),
@@ -57,7 +57,7 @@ public class StoryScreen extends Screen {
     private float _time;
     private boolean _closing;
 
-    private List<StoryData> _removingData = new ArrayList<>();
+    private List<StoryItem> _removingData = new ArrayList<>();
     private List<StoryText> _removingText = new ArrayList<>();
 
     @Override
@@ -74,10 +74,8 @@ public class StoryScreen extends Screen {
         }
 
         for (var i : Data) {
-            if (_time >= i.ShowTick) {
-                StoryText text = new StoryText(i, this);
-                addRenderableOnly(text);
-                _texts.add(text);
+            if (_time >= i.Tick) {
+                i.Invoke(this);
                 _removingData.add(i);
             }
         }
@@ -101,8 +99,25 @@ public class StoryScreen extends Screen {
             i.render(guiGraphics, mouseX, mouseY, partialTick);
     }
 
+    public void CreateText(StoryTextItem data) {
+        StoryText text = new StoryText(data, this);
+        addRenderableOnly(text);
+        _texts.add(text);
+    }
+
+    private boolean _escpae = false;
+
+    public void ChangeEscape(boolean escape) {
+        _escpae = escape;
+    }
+
     @Override
     public void onClose() {
-        // You can't close the screen!
+        if (_escpae) {
+            clearWidgets();
+            _currentTween = new LinearFloatTween(() -> (float)_backgroundAlpha, x -> _backgroundAlpha = Math.round(x),
+                    0f, ShowTransition);
+            _closing = true;
+        }
     }
 }

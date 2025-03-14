@@ -1,6 +1,5 @@
 package io.naustudio.lostfaith.gui.screen.story;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import io.naustudio.lostfaith.gui.tween.LinearFloatTween;
 import io.naustudio.lostfaith.gui.tween.Tween;
 import net.minecraft.client.Minecraft;
@@ -24,7 +23,7 @@ public class StoryText extends AbstractWidget {
 
     private static final Font Font = Minecraft.getInstance().font;
 
-    public StoryText(StoryData data, StoryScreen parent) {
+    public StoryText(StoryTextItem data, StoryScreen parent) {
         super(0, 0, 0, 0, data.Text);
         _parent = parent;
         setX(Math.round(_parent.width * data.Anchor.x + data.Position.x - Font.width(getMessage()) * data.Pivot.x));

@@ -20,6 +20,11 @@ public abstract class Tween<T> {
         Start = Getter.get();
         End = end;
         Duration = duration;
+
+        if (Duration == 0) {
+            setter.accept(end);
+            Died = true;
+        }
     }
 
     public void Update(float delta) {

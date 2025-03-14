@@ -72,7 +72,6 @@ public class StoryScreen extends Screen {
             else
                 _time += partialTick;
         }
-        else return;
 
         for (var i : Data) {
             if (_time >= i.ShowTick) {
@@ -105,6 +104,5 @@ public class StoryScreen extends Screen {
     @Override
     public void onClose() {
         // You can't close the screen!
-        minecraft.popGuiLayer(); // ...
     }
 }

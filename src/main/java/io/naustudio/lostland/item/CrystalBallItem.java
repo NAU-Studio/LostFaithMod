@@ -1,9 +1,9 @@
-package io.naustudio.lostfaith.item;
+package io.naustudio.lostland.item;
 
-import io.naustudio.lostfaith.gui.screen.story.ChangeEscapeItem;
-import io.naustudio.lostfaith.gui.screen.story.StoryItem;
-import io.naustudio.lostfaith.gui.screen.story.StoryTextItem;
-import io.naustudio.lostfaith.gui.screen.story.StoryScreen;
+import io.naustudio.lostland.gui.screen.story.ChangeEscapeItem;
+import io.naustudio.lostland.gui.screen.story.StoryItem;
+import io.naustudio.lostland.gui.screen.story.StoryTextItem;
+import io.naustudio.lostland.gui.screen.story.StoryScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -31,7 +31,7 @@ public class CrystalBallItem extends Item {
                 10,
                 80,
                 10,
-                Component.translatable("scn.lostfaith.beginning.0"),
+                Component.translatable("scn.lostland.beginning.0"),
                 new Vector2f(0.5f, 0.5f),
                 new Vector2f(0, 0),
                 new Vector2f(0.5f, 0.5f),
@@ -43,7 +43,7 @@ public class CrystalBallItem extends Item {
                 30,
                 20,
                 0,
-                Component.translatable("scn.lostfaith.beginning.1"),
+                Component.translatable("scn.lostland.beginning.1"),
                 new Vector2f(0.5f, 0.5f),
                 new Vector2f(0, 12),
                 new Vector2f(0.5f, 0.5f),
@@ -55,7 +55,7 @@ public class CrystalBallItem extends Item {
                 50,
                 20,
                 0,
-                Component.translatable("scn.lostfaith.beginning.2"),
+                Component.translatable("scn.lostland.beginning.2"),
                 new Vector2f(0.5f, 0.5f),
                 new Vector2f(0, 12),
                 new Vector2f(0.5f, 0.5f),
@@ -67,7 +67,7 @@ public class CrystalBallItem extends Item {
                 70,
                 20,
                 0,
-                Component.translatable("scn.lostfaith.beginning.3"),
+                Component.translatable("scn.lostland.beginning.3"),
                 new Vector2f(0.5f, 0.5f),
                 new Vector2f(0, 12),
                 new Vector2f(0.5f, 0.5f),

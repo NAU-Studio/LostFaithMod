@@ -5,7 +5,7 @@
 
 ## Story Description
 
-WIP...
+Jesus was born. An evil and despicable specie also born quietly. They disguised themselves as humans and mingled with the crowd. As the specie grew, they shed their disguises and were determined to wipe out all humans. Make your choice: to be a hero? or...
 
 ## Former Story Description
 

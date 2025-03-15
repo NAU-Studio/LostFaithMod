@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "lostland:crucifix"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

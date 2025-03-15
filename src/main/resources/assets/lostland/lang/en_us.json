@@ -1,0 +1,31 @@
+{
+  "item_group.lostland.main": "Lost Lnad",
+  "item.lostland.crucifix": "Crucifix",
+  "item.lostland.silver_crucifix": "Silver Crucifix",
+  "item.lostland.silver_crucifix.description.line1": "§eRight click§r to shoot a divine flame.§r",
+  "item.lostland.silver_crucifix.description.line2": "§7§oBurn them! ...Wait, don't burn yourselves!§r",
+  "item.lostland.bible_old_testa": "§eThe Old Testament · Bible§r",
+  "item.lostland.bible_old_testa.description.line1": "§rSame with the shield.",
+  "item.lostland.bible_old_testa.description.line2": "§7§oThe laws of the old world, blessed by the gods, is an exorcist weapon. It can §r§eresists almost all damage§7§o and is §r§eunbreakable§7§o.§r",
+
+  "block.lostland.roma_silver_coin_stack": "Roman Silver Coin",
+  "block.lostland.silver_framed_gold_block": "Silver Framed Gold Block",
+
+  "entity.lostland.judas": "§bJudas§r",
+  "entity.lostland.lost_turtle_guard": "Lost Turtle Guard",
+  "entity.lostland.royal_turtle_guard": "Royal Turtle Guard",
+  "entity.lostland.king_turtle": "§6King Turtle§r",
+  "entity.lostland.queen_turtle": "§6Queen Turtle§r",
+  "entity.lostland.bossbar.turtle_monarch_couple": "§6Turtle Monarch Couple§r",
+
+  "message.lostland.format": "%s §7>>§r %s",
+  "message.lostland.sender.judas": "§bJudas§r",
+  "message.lostland.sender.player": "§ePLAYERNAME§r",
+
+  "message.lostland.judas.judas.0": "负责处理集团财务的为了30银币而背叛很可笑对么？",
+  "message.lostland.judas.player.0": "你这家伙如今还在祸乱人间，你该回到地狱！",
+  "message.lostland.judas.judas.1": "可我已经忏悔了，主没有保佑我。",
+
+  "scn.lostland.beginning.0": "test",
+  "scn.lostland.beginning.1": "test2"
+}

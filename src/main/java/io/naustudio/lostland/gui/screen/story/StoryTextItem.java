@@ -9,9 +9,9 @@ public class StoryTextItem extends io.naustudio.lostland.gui.screen.story.StoryI
     public Vector2f Anchor;
     public Vector2f Position, Pivot;
     public int R, G, B;
-    public float Duration, Transition;
+    public float Duration, InTransition, OutTransition;
 
-    public StoryTextItem(float tick, float duration, float transition, Component text,
+    public StoryTextItem(float tick, float duration, float inTransition, float outTransition, Component text,
                          Vector2f anchor, Vector2f posiiton, Vector2f pivot,
                          int r, int g, int b) {
         super(tick);
@@ -23,7 +23,8 @@ public class StoryTextItem extends io.naustudio.lostland.gui.screen.story.StoryI
         G = g;
         B = b;
         Duration = duration;
-        Transition = transition;
+        InTransition = inTransition;
+        OutTransition = outTransition;
     }
 
     @Override

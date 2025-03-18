@@ -28,5 +28,19 @@
   "scn.lostland.beginning.0": "此模组与大部分模组都有玩法冲突，在安装其他模组后建议不要游玩此模组。",
   "scn.lostland.beginning.1": "接下来3秒内，你可以按下Esc退出。",
   "scn.lostland.beginning.2": "接下来2秒内，你可以按下Esc退出。",
-  "scn.lostland.beginning.3": "接下来1秒内，你可以按下Esc退出。"
+  "scn.lostland.beginning.3": "接下来1秒内，你可以按下Esc退出。",
+  "scn.lostland.beginning.4": "今天是我的18岁生日。",
+  "scn.lostland.beginning.5": "我们村里每个人在18岁都要参与属于自己的成人礼。",
+  "scn.lostland.beginning.6": "在这一天每个人都会选择或者是接受一个适合自己的职业。",
+  "scn.lostland.beginning.7": "老实说，我的梦想是成为一名厨师。",
+  "scn.lostland.beginning.8": "但是那群恶心的家伙毁掉了很多人的家园。",
+  "scn.lostland.beginning.9": "我不知道是否明天他们就会摧毁我的村子，",
+  "scn.lostland.beginning.10": "所以我应该慎重选择我的职业。",
+  "scn.lostland.beginning.11": "算了，还是先去村长那里吧。",
+  "scn.lostland.beginning.12": "我应该还记得怎么走吧？",
+  "scn.lostland.format.date": "%d年%d月%d日",
+  "scn.lostland.format.weather.clear": "晴",
+  "scn.lostland.format.weather.cloudy": "阴",
+  "scn.lostland.format.weather.rain": "雨",
+  "scn.lostland.format.weather.snow": "雪"
 }

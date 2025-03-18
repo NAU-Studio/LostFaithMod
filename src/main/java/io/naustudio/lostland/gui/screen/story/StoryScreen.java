@@ -34,9 +34,9 @@ public class StoryScreen extends Screen {
 
     private Tween<?> _currentTween;
 
-    private List<StoryText> _texts = new ArrayList<>();
+    private List<Text> _texts = new ArrayList<>();
 
-    protected void FinalizeText(StoryText text) {
+    protected void FinalizeText(Text text) {
         _removingText.add(text);
         _texts.remove(text);
     }
@@ -58,7 +58,7 @@ public class StoryScreen extends Screen {
     private boolean _closing;
 
     private List<StoryItem> _removingData = new ArrayList<>();
-    private List<StoryText> _removingText = new ArrayList<>();
+    private List<Text> _removingText = new ArrayList<>();
 
     @Override
     public boolean isPauseScreen() {
@@ -84,6 +84,12 @@ public class StoryScreen extends Screen {
         if (_closing)
             return;
 
+        if (!_removingText.isEmpty()) {
+            for (var i : _removingText)
+                removeWidget(i);
+            _removingText.clear();
+        }
+
         for (var i : Data) {
             if (_time >= i.Tick) {
                 i.Invoke(this);
@@ -95,11 +101,7 @@ public class StoryScreen extends Screen {
                 Data.remove(i);
             _removingData.clear();
         }
-        if (!_removingText.isEmpty()) {
-            for (var i : _removingText)
-                removeWidget(i);
-            _removingText.clear();
-        }
+
         if (Data.isEmpty() && _texts.isEmpty()) {
             _currentTween = new LinearFloatTween(() -> (float)_backgroundAlpha, x -> _backgroundAlpha = Math.round(x),
                     0f, ShowTransition);
@@ -112,6 +114,12 @@ public class StoryScreen extends Screen {
 
     public void CreateText(StoryTextItem data) {
         StoryText text = new StoryText(data, this);
+        addRenderableOnly(text);
+        _texts.add(text);
+    }
+
+    public void CreateTypeWriterText(TypeWriterTextItem data) {
+        TypeWriterText text = new TypeWriterText(data, this);
         addRenderableOnly(text);
         _texts.add(text);
     }

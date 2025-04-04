@@ -47,8 +47,8 @@ authors="${mod_authors}" #optional
 description='''耶稣诞世，有一邪恶卑劣的种族悄然诞生。他们扮成人类的样子，混迹于人群之中。随着种族的壮大，他们卸掉了伪装，势要将人类赶尽杀绝。做出你的选择吧：是成为英雄？还是…'''
 
 # The [[mixins]] block allows you to declare your mixin config to FML so that it gets loaded.
-#[[mixins]]
-#config="${mod_id}.mixins.json"
+[[mixins]]
+config="${mod_id}.mixins.json"
 
 # The [[accessTransformers]] block allows you to declare where your AT file is.
 # If this block is omitted, a fallback attempt will be made to load an AT from META-INF/accesstransformer.cfg

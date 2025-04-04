@@ -1,0 +1,48 @@
+{
+  "item_group.lostland.main": "Lost Lnad",
+  "item.lostland.crucifix": "Crucifix",
+  "item.lostland.silver_crucifix": "Silver Crucifix",
+  "item.lostland.silver_crucifix.description.line1": "§eRight click§r to shoot a divine flame.§r",
+  "item.lostland.silver_crucifix.description.line2": "§7§oBurn them! ...Wait, don't burn yourselves!§r",
+  "item.lostland.bible_old_testa": "§eThe Old Testament · Bible§r",
+  "item.lostland.bible_old_testa.description.line1": "§rSame with the shield.",
+  "item.lostland.bible_old_testa.description.line2": "§7§oThe laws of the old world, blessed by the gods, is an exorcist weapon. It can §r§eresists almost all damage§7§o and is §r§eunbreakable§7§o.§r",
+
+  "block.lostland.roma_silver_coin_stack": "Roman Silver Coin",
+  "block.lostland.silver_framed_gold_block": "Silver Framed Gold Block",
+
+  "entity.lostland.judas": "§bJudas§r",
+  "entity.lostland.lost_turtle_guard": "Lost Turtle Guard",
+  "entity.lostland.royal_turtle_guard": "Royal Turtle Guard",
+  "entity.lostland.king_turtle": "§6King Turtle§r",
+  "entity.lostland.queen_turtle": "§6Queen Turtle§r",
+  "entity.lostland.bossbar.turtle_monarch_couple": "§6Turtle Monarch Couple§r",
+
+  "message.lostland.format": "%s §7>>§r %s",
+  "message.lostland.sender.judas": "§bJudas§r",
+  "message.lostland.sender.player": "§ePLAYERNAME§r",
+
+  "message.lostland.judas.judas.0": "负责处理集团财务的为了30银币而背叛很可笑对么？",
+  "message.lostland.judas.player.0": "你这家伙如今还在祸乱人间，你该回到地狱！",
+  "message.lostland.judas.judas.1": "可我已经忏悔了，主没有保佑我。",
+
+  "scn.lostland.beginning.0": "此模组与大部分模组都有玩法冲突，在安装其他模组后建议不要游玩此模组。",
+  "scn.lostland.beginning.1": "接下来3秒内，你可以按下Esc退出。",
+  "scn.lostland.beginning.2": "接下来2秒内，你可以按下Esc退出。",
+  "scn.lostland.beginning.3": "接下来1秒内，你可以按下Esc退出。",
+  "scn.lostland.beginning.4": "今天是我的18岁生日。",
+  "scn.lostland.beginning.5": "我们村里每个人在18岁都要参与属于自己的成人礼。",
+  "scn.lostland.beginning.6": "在这一天每个人都会选择或者是接受一个适合自己的职业。",
+  "scn.lostland.beginning.7": "老实说，我的梦想是成为一名厨师。",
+  "scn.lostland.beginning.8": "但是那群恶心的家伙毁掉了很多人的家园。",
+  "scn.lostland.beginning.9": "我不知道是否明天他们就会摧毁我的村子，",
+  "scn.lostland.beginning.10": "所以我应该慎重选择我的职业。",
+  "scn.lostland.beginning.11": "算了，还是先去村长那里吧。",
+  "scn.lostland.beginning.12": "我应该还记得怎么走吧？",
+
+  "scn.lostland.format.date": "%d年%d月%d日",
+  "scn.lostland.format.weather.clear": "晴",
+  "scn.lostland.format.weather.cloudy": "阴",
+  "scn.lostland.format.weather.rain": "雨",
+  "scn.lostland.format.weather.snow": "雪"
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "@": [
+      {
+        "item": "lostland:roma_silver_coin"
+      }
+    ]
+  },
+  "pattern": [
+    " @ ",
+    "@@@",
+    " @ "
+  ],
+  "result": {
+    "id": "lostland:silver_crucifix"
+  }
+}
